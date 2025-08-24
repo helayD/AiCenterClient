@@ -1,5 +1,4 @@
 import 'package:admin/models/my_files.dart';
-import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -37,15 +36,21 @@ class MyFiles extends StatelessWidget {
           ],
         ),
         SizedBox(height: defaultPadding),
-        Responsive(
-          mobile: FileInfoCardGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
-          ),
-          tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-          ),
+        Builder(
+          builder: (context) {
+            if (Responsive.isMobile(context)) {
+              return FileInfoCardGridView(
+                crossAxisCount: _size.width < 650 ? 2 : 4,
+                childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
+              );
+            } else if (Responsive.isTablet(context)) {
+              return FileInfoCardGridView();
+            } else {
+              return FileInfoCardGridView(
+                childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+              );
+            }
+          },
         ),
       ],
     );

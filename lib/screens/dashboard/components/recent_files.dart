@@ -1,7 +1,6 @@
 import 'package:admin/models/recent_file.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
-import '../../../utils/tailwind_flutter.dart';
 
 class RecentFiles extends StatelessWidget {
   const RecentFiles({
@@ -10,27 +9,25 @@ class RecentFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TW.colFlat(
-      gap: TW.sp6,
+    return Column(
+      spacing: TW.space('6'),
       children: [
         // 扁平标题栏 - 无装饰
-        TW.rowFlat(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               "最近文件",
-              style: TW.heading3(context),
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             // 扁平查看全部按钮 - 仅使用文字色彩
             TextButton(
               onPressed: () {},
               child: Text(
                 "查看全部",
-                style: TW.textStyle(
-                  context,
-                  size: TW.textSm,
-                  weight: TW.medium,
-                  color: TW.blue600,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),
@@ -38,8 +35,8 @@ class RecentFiles extends StatelessWidget {
         ),
         
         // 扁平文件列表 - 完全无装饰
-        TW.colFlat(
-          gap: TW.sp4,
+        Column(
+          spacing: TW.space('4'),
           children: demoRecentFiles
               .take(5)
               .map((file) => _buildFlatFileItem(context, file))
@@ -53,46 +50,42 @@ class RecentFiles extends StatelessWidget {
   Widget _buildFlatFileItem(BuildContext context, RecentFile file) {
     return GestureDetector(
       onTap: () {},
-      child: TW.contentBox(
+      child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: TW.sp4,
-          horizontal: TW.sp2,
+          vertical: TW.space('4'),
+          horizontal: TW.space('2'),
         ),
-        child: TW.rowFlat(
-          gap: TW.sp4,
+        child: Row(
+          spacing: TW.space('4'),
           children: [
             // 文件类型标识 - 仅使用文字，无图标装饰
             SizedBox(
               width: 60,
               child: Text(
                 _getFileTypeLabel(file.title!),
-                style: TW.textStyle(
-                  context,
-                  size: TW.textXs,
-                  weight: TW.medium,
-                  color: TW.text500(context),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ),
             
             // 文件信息 - 纯文字布局
             Expanded(
-              child: TW.colFlat(
-                gap: TW.sp1,
+              child: Column(
+                spacing: TW.space('1'),
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     file.title!,
-                    style: TW.textStyle(
-                      context,
-                      size: TW.textBase,
-                      weight: TW.medium,
-                      color: TW.text800(context),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   Text(
                     file.date!,
-                    style: TW.bodySmall(context),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),
@@ -101,11 +94,9 @@ class RecentFiles extends StatelessWidget {
             // 文件大小 - 右对齐文字
             Text(
               file.size!,
-              style: TW.textStyle(
-                context,
-                size: TW.textSm,
-                weight: TW.medium,
-                color: TW.text600(context),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ],

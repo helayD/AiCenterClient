@@ -1,5 +1,4 @@
 import 'package:admin/controllers/auth_controller.dart';
-import 'package:admin/responsive.dart';
 import 'package:admin/screens/auth/components/login_form.dart';
 import 'package:admin/screens/auth/components/login_header.dart';
 import 'package:admin/screens/main/main_screen.dart';
@@ -9,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../components/b2b_modern_container.dart';
-import '../../theme/tailwind_colors.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -21,16 +19,22 @@ class LoginScreen extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  TailwindSemanticColors.background,
-                  TailwindSemanticColors.surface,
+                  TW.colorBlue[50]!,
+                  TW.colorSlate[50]!,
                 ],
               ),
             ),
             child: SafeArea(
-              child: Responsive(
-                mobile: _buildMobileLayout(context),
-                tablet: _buildTabletLayout(context),
-                desktop: _buildDesktopLayout(context),
+              child: Builder(
+                builder: (context) {
+                  if (Responsive.isMobile(context)) {
+                    return _buildMobileLayout(context);
+                  } else if (Responsive.isTablet(context)) {
+                    return _buildTabletLayout(context);
+                  } else {
+                    return _buildDesktopLayout(context);
+                  }
+                },
               ),
             ),
           ),
@@ -61,7 +65,7 @@ class LoginScreen extends StatelessWidget {
         child: Container(
           constraints: BoxConstraints(maxWidth: 500),
           child: B2BModernContainer(
-            statusColor: TailwindColors.blue600,  // Tailwind蓝色 - 登录认证
+            statusColor: TW.colorBlue[600]!,  // Tailwind蓝色 - 登录认证
             showStatusBar: true,
             showHoverEffect: true,
             padding: EdgeInsets.all(defaultPadding * 2),
@@ -129,7 +133,7 @@ class LoginScreen extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Container(
-            color: TailwindSemanticColors.surface,
+            color: Theme.of(context).colorScheme.surface,
             padding: EdgeInsets.all(defaultPadding * 3),
             child: Center(
               child: Container(

@@ -1,5 +1,5 @@
 /// 设计系统集成指南
-/// 展示如何将TechThemeSystem和TechComponents应用到现有项目中
+/// 展示如何将TailwindThemeSystem和TechComponents应用到现有项目中
 /// 
 /// 本指南提供：
 /// - 现有组件的升级示例
@@ -9,8 +9,8 @@
 library integration_guide;
 
 import 'package:flutter/material.dart';
-import '../theme/tech_theme_system.dart';
-import '../components/tech_components.dart';
+import '../theme/tailwind_theme_system.dart';
+import '../components/tailwind_components.dart';
 
 /// # 集成步骤指南
 /// 
@@ -23,8 +23,8 @@ class TechAppIntegration {
   /// 
   /// MaterialApp(
   ///   title: 'AiCenterClient',
-  ///   theme: TechThemeSystem.lightTheme,
-  ///   darkTheme: TechThemeSystem.darkTheme,
+  ///   theme: TailwindThemeSystem.lightTheme,
+  ///   darkTheme: TailwindThemeSystem.darkTheme,
   ///   themeMode: ThemeMode.system,
   ///   home: MainScreen(),
   /// )
@@ -51,16 +51,16 @@ class StorageDetailsUpgrade extends StatelessWidget {
           ),
         ),
         
-        SizedBox(height: TechThemeSystem.spacing.lg),
+        SizedBox(height: TW.space("lg),
         
         // 保持原有图表组件
         const Chart(),
         
-        SizedBox(height: TechThemeSystem.spacing.lg),
+        SizedBox(height: TW.space("lg),
         
-        // 使用TechCard替代原有的扁平容器
-        TechCard(
-          padding: EdgeInsets.all(TechThemeSystem.spacing.lg),
+        // 使用TailwindCard替代原有的扁平容器
+        TailwindCard(
+          padding: EdgeInsets.all(TW.space("lg),
           child: Column(
             children: [
               _buildStorageMetric(context, "文档文件", "1.3GB", 1328),
@@ -77,8 +77,8 @@ class StorageDetailsUpgrade extends StatelessWidget {
   /// 升级后的存储项构建方法
   Widget _buildStorageMetric(BuildContext context, String title, String amount, int numOfFiles) {
     return Padding(
-      padding: EdgeInsets.only(bottom: TechThemeSystem.spacing.md),
-      child: TechListItem(
+      padding: EdgeInsets.only(bottom: TW.space("md),
+      child: TailwindListItem(
         title: title,
         subtitle: '$numOfFiles 个文件',
         trailing: Text(
@@ -112,13 +112,13 @@ class MyFilesUpgrade extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            TechButton.primary(
+            TailwindButton.primary(
               onPressed: () {/* 添加文件逻辑 */},
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.add, size: 18),
-                  SizedBox(width: TechThemeSystem.spacing.xs),
+                  SizedBox(width: TW.space("xs),
                   Text("添加新文件"),
                 ],
               ),
@@ -126,7 +126,7 @@ class MyFilesUpgrade extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: TechThemeSystem.spacing.lg),
+        SizedBox(height: TW.space("lg),
         
         // 使用响应式网格替代原有Wrap布局
         _buildResponsiveFileGrid(context),
@@ -160,8 +160,8 @@ class MyFilesUpgrade extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            mainAxisSpacing: TechThemeSystem.spacing.md,
-            crossAxisSpacing: TechThemeSystem.spacing.md,
+            mainAxisSpacing: TW.space("md,
+            crossAxisSpacing: TW.space("md,
             childAspectRatio: 1.2,
           ),
           itemCount: files.length,
@@ -197,8 +197,8 @@ class FileMetricCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TechCard(
-      padding: EdgeInsets.all(TechThemeSystem.spacing.lg),
+    return TailwindCard(
+      padding: EdgeInsets.all(TW.space("lg),
       showBorder: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,10 +208,10 @@ class FileMetricCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(TechThemeSystem.spacing.sm),
+                padding: EdgeInsets.all(TW.space("sm),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(TechThemeSystem.radius.md),
+                  borderRadius: BorderRadius.circular(TW.radius("md),
                 ),
                 child: Icon(
                   icon,
@@ -219,7 +219,7 @@ class FileMetricCard extends StatelessWidget {
                   size: 24,
                 ),
               ),
-              SizedBox(width: TechThemeSystem.spacing.md),
+              SizedBox(width: TW.space("md),
               Expanded(
                 child: Text(
                   title,
@@ -231,7 +231,7 @@ class FileMetricCard extends StatelessWidget {
             ],
           ),
           
-          SizedBox(height: TechThemeSystem.spacing.md),
+          SizedBox(height: TW.space("md),
           
           // 统计数据
           Column(
@@ -243,7 +243,7 @@ class FileMetricCard extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                 ),
               ),
-              SizedBox(height: TechThemeSystem.spacing.xs),
+              SizedBox(height: TW.space("xs),
               Text(
                 storage,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -269,19 +269,19 @@ class DashboardScreenUpgrade extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(TechThemeSystem.spacing.lg),
+          padding: EdgeInsets.all(TW.space("lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 页面标题和用户信息
               _buildDashboardHeader(context),
               
-              SizedBox(height: TechThemeSystem.spacing.xl),
+              SizedBox(height: TW.space("xl),
               
               // KPI指标概览
               _buildKPIOverview(context),
               
-              SizedBox(height: TechThemeSystem.spacing.xl),
+              SizedBox(height: TW.space("xl),
               
               // 主要内容区域
               LayoutBuilder(
@@ -292,7 +292,7 @@ class DashboardScreenUpgrade extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(flex: 2, child: MyFilesUpgrade()),
-                        SizedBox(width: TechThemeSystem.spacing.xl),
+                        SizedBox(width: TW.space("xl),
                         Expanded(flex: 1, child: StorageDetailsUpgrade()),
                       ],
                     );
@@ -301,7 +301,7 @@ class DashboardScreenUpgrade extends StatelessWidget {
                     return Column(
                       children: [
                         MyFilesUpgrade(),
-                        SizedBox(height: TechThemeSystem.spacing.xl),
+                        SizedBox(height: TW.space("xl),
                         StorageDetailsUpgrade(),
                       ],
                     );
@@ -317,8 +317,8 @@ class DashboardScreenUpgrade extends StatelessWidget {
 
   /// 仪表板头部
   Widget _buildDashboardHeader(BuildContext context) {
-    return TechCard(
-      padding: EdgeInsets.all(TechThemeSystem.spacing.lg),
+    return TailwindCard(
+      padding: EdgeInsets.all(TW.space("lg),
       child: Row(
         children: [
           // 用户头像
@@ -332,7 +332,7 @@ class DashboardScreenUpgrade extends StatelessWidget {
             ),
           ),
           
-          SizedBox(width: TechThemeSystem.spacing.lg),
+          SizedBox(width: TW.space("lg),
           
           // 用户信息
           Expanded(
@@ -345,7 +345,7 @@ class DashboardScreenUpgrade extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                   ),
                 ),
-                SizedBox(height: TechThemeSystem.spacing.xs),
+                SizedBox(height: TW.space("xs),
                 Text(
                   "管理员",
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -379,7 +379,7 @@ class DashboardScreenUpgrade extends StatelessWidget {
           ),
         ),
         
-        SizedBox(height: TechThemeSystem.spacing.lg),
+        SizedBox(height: TW.space("lg),
         
         // KPI网格
         LayoutBuilder(
@@ -396,8 +396,8 @@ class DashboardScreenUpgrade extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: crossAxisCount,
-                mainAxisSpacing: TechThemeSystem.spacing.md,
-                crossAxisSpacing: TechThemeSystem.spacing.md,
+                mainAxisSpacing: TW.space("md,
+                crossAxisSpacing: TW.space("md,
                 childAspectRatio: 1.8,
               ),
               children: [
@@ -451,21 +451,21 @@ class SideMenuUpgrade extends StatelessWidget {
         children: [
           // Logo区域
           Container(
-            padding: EdgeInsets.all(TechThemeSystem.spacing.lg),
+            padding: EdgeInsets.all(TW.space("lg),
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(TechThemeSystem.spacing.sm),
+                  padding: EdgeInsets.all(TW.space("sm),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(TechThemeSystem.radius.md),
+                    borderRadius: BorderRadius.circular(TW.radius("md),
                   ),
                   child: Icon(
                     Icons.dashboard,
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
-                SizedBox(width: TechThemeSystem.spacing.md),
+                SizedBox(width: TW.space("md),
                 Text(
                   'AI Center',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -481,7 +481,7 @@ class SideMenuUpgrade extends StatelessWidget {
           // 导航项
           Expanded(
             child: ListView(
-              padding: EdgeInsets.symmetric(vertical: TechThemeSystem.spacing.sm),
+              padding: EdgeInsets.symmetric(vertical: TW.space("sm),
               children: [
                 _buildNavItem(context, Icons.dashboard, '仪表板', true),
                 _buildNavItem(context, Icons.folder, '文件管理', false),
@@ -494,14 +494,14 @@ class SideMenuUpgrade extends StatelessWidget {
           
           // 底部用户区域
           Container(
-            padding: EdgeInsets.all(TechThemeSystem.spacing.md),
-            child: TechButton.outline(
+            padding: EdgeInsets.all(TW.space("md),
+            child: TailwindButton.outline(
               onPressed: () {/* 退出登录 */},
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.logout, size: 16),
-                  SizedBox(width: TechThemeSystem.spacing.xs),
+                  SizedBox(width: TW.space("xs),
                   Text('退出登录'),
                 ],
               ),
@@ -515,10 +515,10 @@ class SideMenuUpgrade extends StatelessWidget {
   Widget _buildNavItem(BuildContext context, IconData icon, String title, bool isSelected) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: TechThemeSystem.spacing.sm,
-        vertical: TechThemeSystem.spacing.xs,
+        horizontal: TW.space("sm,
+        vertical: TW.space("xs,
       ),
-      child: TechListItem(
+      child: TailwindListItem(
         leading: Icon(
           icon,
           color: isSelected 
@@ -537,11 +537,11 @@ class SideMenuUpgrade extends StatelessWidget {
 /// 
 /// ### 快速迁移checklist:
 /// ```
-/// □ 1. 在main.dart配置TechThemeSystem主题
-/// □ 2. 替换所有Card组件为TechCard
+/// □ 1. 在main.dart配置TailwindThemeSystem主题
+/// □ 2. 替换所有Card组件为TailwindCard
 /// □ 3. 使用Theme.of(context).textTheme替代自定义文字样式
-/// □ 4. 用TechButton替代所有Button组件
-/// □ 5. 使用TechThemeSystem.spacing替代硬编码间距
+/// □ 4. 用TailwindButton替代所有Button组件
+/// □ 5. 使用TailwindThemeSystem.spacing替代硬编码间距
 /// □ 6. 应用MetricDisplay组件展示KPI数据
 /// □ 7. 用StatusIndicator显示状态信息
 /// □ 8. 测试深色模式显示效果
@@ -562,13 +562,13 @@ class MigrationTips {
   }
 
   /// Q: 原有的padding和margin如何迁移？
-  /// A: 使用TechThemeSystem.spacing标准化间距
+  /// A: 使用TailwindThemeSystem.spacing标准化间距
   static void migrateSpacing() {
     // 旧代码
     // Padding(padding: EdgeInsets.all(16))
     
     // 新代码  
-    // Padding(padding: EdgeInsets.all(TechThemeSystem.spacing.md))
+    // Padding(padding: EdgeInsets.all(TW.space("md))
   }
 
   /// Q: 如何保持现有功能的同时升级UI？

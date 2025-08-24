@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
-import '../../../theme/tech_theme_system.dart';
-import '../../../theme/tailwind_colors.dart';
-import '../../../components/tech_components.dart';
+import '../../../components/tailwind_components.dart';
+import '../../../components/b2b_modern_container.dart';
 import 'chart.dart';
 
 class StorageDetails extends StatelessWidget {
@@ -23,16 +22,16 @@ class StorageDetails extends StatelessWidget {
           ),
         ),
         
-        SizedBox(height: TechSpacing.lg),
+        SizedBox(height: TW.space('6')),
         
         // 图表区域 - 保持原有图表
         Chart(),
         
-        SizedBox(height: TechSpacing.lg),
+        SizedBox(height: TW.space('6')),
         
-        // 使用TechCard包装存储信息列表
-        TechCard(
-          padding: EdgeInsets.all(TechSpacing.lg),
+        // 使用TailwindCard包装存储信息列表
+        TailwindCard(
+          padding: '6',
           showBorder: true,
           child: Column(
             children: [
@@ -41,34 +40,34 @@ class StorageDetails extends StatelessWidget {
                 title: "文档文件",
                 amount: "1.3GB",
                 numOfFiles: 1328,
-                trend: TrendType.up,
+                trend: TrendDirection.up,
                 change: "+5.2%",
               ),
-              SizedBox(height: TechSpacing.md),
+              SizedBox(height: TW.space('4')),
               _buildStorageMetric(
                 context,
                 title: "媒体文件",
                 amount: "15.3GB",
                 numOfFiles: 1328,
-                trend: TrendType.up,
+                trend: TrendDirection.up,
                 change: "+12.8%",
               ),
-              SizedBox(height: TechSpacing.md),
+              SizedBox(height: TW.space('4')),
               _buildStorageMetric(
                 context,
                 title: "其他文件",
                 amount: "1.3GB",
                 numOfFiles: 1328,
-                trend: TrendType.neutral,
+                trend: TrendDirection.neutral,
                 change: "0%",
               ),
-              SizedBox(height: TechSpacing.md),
+              SizedBox(height: TW.space('4')),
               _buildStorageMetric(
                 context,
                 title: "未知文件",
                 amount: "1.3GB",
                 numOfFiles: 140,
-                trend: TrendType.down,
+                trend: TrendDirection.down,
                 change: "-2.1%",
               ),
             ],
@@ -78,12 +77,12 @@ class StorageDetails extends StatelessWidget {
     );
   }
   
-  /// 使用MetricDisplay构建存储指标
+  /// 使用B2BDataContainer构建存储指标
   Widget _buildStorageMetric(BuildContext context, {
     required String title,
     required String amount,
     required int numOfFiles,
-    required TrendType trend,
+    required TrendDirection trend,
     required String change,
   }) {
     // 根据文件类型选择图标
@@ -102,10 +101,10 @@ class StorageDetails extends StatelessWidget {
       }
     }
     
-    return MetricDisplay(
+    return B2BDataContainer(
       title: title,
       value: amount,
-      change: change,
+      trendValue: change,
       trend: trend,
       icon: getFileTypeIcon(title),
       subtitle: '$numOfFiles 个文件',

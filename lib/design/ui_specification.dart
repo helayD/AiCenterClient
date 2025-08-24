@@ -56,8 +56,8 @@ class UISpecificationGuide {
   /// // 直接使用Tailwind标准色彩
   /// Widget build(BuildContext context) {
   ///   return Container(
-  ///     color: TailwindColors.blue500,  // 标准蓝色-500
-  ///     child: Text('示例', style: TextStyle(color: TailwindColors.white)),
+  ///     color: TW.colorBlue[500]!,  // 标准蓝色-500
+  ///     child: Text('示例', style: TextStyle(color: TW.colorWhite[]!)),
   ///   );
   /// }
   /// ```
@@ -77,10 +77,10 @@ class UISpecificationGuide {
   /// Container(color: Theme.of(context).colorScheme.primary)
   /// 
   /// // ✅ 推荐：使用Tailwind语义色彩
-  /// Container(color: TailwindSemanticColors.primary)
+  /// Container(color: Semantic.primary)
   /// 
   /// // ✅ 可以：使用标准Tailwind色彩
-  /// Container(color: TailwindColors.blue600)
+  /// Container(color: TW.colorBlue[600]!)
   /// 
   /// // ❌ 避免：硬编码颜色值
   /// Container(color: Color(0xFF2563EB))

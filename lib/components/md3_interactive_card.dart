@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../utils/md3_animations.dart';
-import '../theme/tailwind_colors.dart';
 
 /// Material Design 3 交互式卡片组件
 /// 支持悬停、按压动画和语义化颜色
@@ -158,14 +157,14 @@ class _MD3InteractiveCardState extends State<MD3InteractiveCard>
                   onTapUp: widget.onTap != null ? _handleTapUp : null,
                   onTapCancel: widget.onTap != null ? _handleTapCancel : null,
                   onTap: null, // 我们在 onTapUp 中处理点击
-                  borderRadius: BorderRadius.circular(TechRadius.md),
+                  borderRadius: BorderRadius.circular(TW.radius("md")),
                   splashColor: theme.colorScheme.primary.withValues(alpha: 0.12),
                   highlightColor: theme.colorScheme.primary.withValues(alpha: 0.08),
                   child: AnimatedContainer(
                     duration: MD3Animations.duration100,
                     curve: MD3Animations.standard,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(TechRadius.md),
+                      borderRadius: BorderRadius.circular(TW.radius("md")),
                       border: _isHovered && widget.enableHoverAnimation
                           ? Border.all(
                               color: theme.colorScheme.primary.withValues(alpha: 0.12),
@@ -208,20 +207,20 @@ class MD3FileInfoCard extends StatelessWidget {
     
     return MD3InteractiveCard(
       onTap: onTap,
-      margin: EdgeInsets.only(top: TechSpacing.md),
+      margin: EdgeInsets.only(top: TW.space('4')),
       elevation: 2.0,
       child: Container(
-        padding: EdgeInsets.all(TechSpacing.md),
+        padding: EdgeInsets.all(TW.space('4')),
         width: double.infinity,
         child: Row(
           children: [
             Container(
               height: 32,
               width: 32,
-              padding: EdgeInsets.all(TechSpacing.xs),
+              padding: EdgeInsets.all(TW.space('1')),
               decoration: BoxDecoration(
                 color: theme.colorScheme.primaryContainer.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(TechRadius.sm),
+                borderRadius: BorderRadius.circular(TW.radius("sm")),
               ),
               child: Icon(
                 Icons.folder_outlined,
@@ -231,7 +230,7 @@ class MD3FileInfoCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: TechSpacing.md),
+                padding: EdgeInsets.symmetric(horizontal: TW.space('4')),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -244,7 +243,7 @@ class MD3FileInfoCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: TechSpacing.xs / 2),
+                    SizedBox(height: TW.space('1') / 2),
                     Text(
                       "$numOfFiles 个文件",
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -296,7 +295,7 @@ class MD3StorageInfoCard extends StatelessWidget {
       onTap: onTap,
       elevation: 2.0,
       child: Container(
-        padding: EdgeInsets.all(TechSpacing.md),
+        padding: EdgeInsets.all(TW.space('4')),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -306,12 +305,12 @@ class MD3StorageInfoCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: EdgeInsets.all(TechSpacing.sm),
+                  padding: EdgeInsets.all(TW.space("2")),
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
                     color: color.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(TechRadius.sm),
+                    borderRadius: BorderRadius.circular(TW.radius("sm")),
                   ),
                   child: Icon(
                     Icons.storage_outlined,
@@ -331,7 +330,7 @@ class MD3StorageInfoCard extends StatelessWidget {
               ],
             ),
             
-            SizedBox(height: TechSpacing.md),
+            SizedBox(height: TW.space('4')),
             
             // 标题
             Text(
@@ -344,7 +343,7 @@ class MD3StorageInfoCard extends StatelessWidget {
               ),
             ),
             
-            SizedBox(height: TechSpacing.sm),
+            SizedBox(height: TW.space("2")),
             
             // 进度条
             MD3ProgressIndicator(
@@ -352,7 +351,7 @@ class MD3StorageInfoCard extends StatelessWidget {
               percentage: percentage,
             ),
             
-            SizedBox(height: TechSpacing.sm),
+            SizedBox(height: TW.space("2")),
             
             // 存储信息行
             Row(

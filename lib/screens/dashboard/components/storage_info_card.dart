@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
-import '../../../components/b2b_modern_container.dart';
-import '../../../theme/tailwind_colors.dart';
 
 class StorageInfoCard extends StatelessWidget {
   const StorageInfoCard({
@@ -25,9 +23,23 @@ class StorageInfoCard extends StatelessWidget {
     // 使用传入的Tailwind颜色，或回退到标准配色方案
     final color = accentColor ?? _getTailwindColor(title);
     
-    return B2BModernContainer(
-      statusColor: color,
-      padding: EdgeInsets.all(TechSpacing.lg),
+    return Container(
+      padding: EdgeInsets.all(TW.space('6')),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(TW.radius('lg')),
+        border: Border.all(
+          color: color.withOpacity(0.1),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
       child: Row(
         children: [
           // 现代化文件图标容器
@@ -43,7 +55,7 @@ class StorageInfoCard extends StatelessWidget {
                   color.withOpacity(0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(TechRadius.sm),
+              borderRadius: BorderRadius.circular(TW.radius('sm')),
               border: Border.all(
                 color: color.withOpacity(0.2),
                 width: 1,
@@ -56,7 +68,7 @@ class StorageInfoCard extends StatelessWidget {
             ),
           ),
           
-          SizedBox(width: TechSpacing.lg),
+          SizedBox(width: TW.space('6')),
           
           // 存储信息展示区域
           Expanded(
@@ -71,7 +83,7 @@ class StorageInfoCard extends StatelessWidget {
                     letterSpacing: -0.2,
                   ),
                 ),
-                SizedBox(height: TechSpacing.xs),
+                SizedBox(height: TW.space('1')),
                 Text(
                   amountOfFiles,
                   style: theme.textTheme.headlineSmall?.copyWith(
@@ -80,7 +92,7 @@ class StorageInfoCard extends StatelessWidget {
                     letterSpacing: -0.3,
                   ),
                 ),
-                SizedBox(height: TechSpacing.xs),
+                SizedBox(height: TW.space('1')),
                 Row(
                   children: [
                     Icon(
@@ -88,7 +100,7 @@ class StorageInfoCard extends StatelessWidget {
                       size: 14,
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
-                    SizedBox(width: TechSpacing.xs),
+                    SizedBox(width: TW.space('1')),
                     Text(
                       '$numOfFiles 个文件',
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -104,12 +116,12 @@ class StorageInfoCard extends StatelessWidget {
           // 状态指示器
           Container(
             padding: EdgeInsets.symmetric(
-              horizontal: TechSpacing.sm,
-              vertical: TechSpacing.xs,
+              horizontal: TW.space('2'),
+              vertical: TW.space('1'),
             ),
             decoration: BoxDecoration(
               color: color.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(TechRadius.sm),
+              borderRadius: BorderRadius.circular(TW.radius('sm')),
             ),
             child: Icon(
               Icons.trending_up_rounded,
@@ -128,20 +140,20 @@ class StorageInfoCard extends StatelessWidget {
       case 'documents':
       case '文档文件':
       case 'documents files':
-        return TailwindColors.blue600;    // Tailwind蓝 - 文档数据
+        return TW.colorBlue[600]!;    // Tailwind蓝 - 文档数据
       case 'media':
       case '媒体文件':
       case 'media files':
-        return TailwindColors.violet500;     // Tailwind紫 - 创意内容
+        return TW.colorViolet[500]!;     // Tailwind紫 - 创意内容
       case 'other':
       case '其他文件':
       case 'other files':
-        return TailwindColors.green500;    // Tailwind绿 - 其他资源
+        return TW.colorGreen[500]!;    // Tailwind绿 - 其他资源
       case 'unknown':
       case '未知':
-        return TailwindColors.orange500;     // Tailwind橙 - 未知文件
+        return TW.colorOrange[500]!;     // Tailwind橙 - 未知文件
       default:
-        return TailwindColors.blue600;    // 默认蓝色
+        return TW.colorBlue[600]!;    // 默认蓝色
     }
   }
   

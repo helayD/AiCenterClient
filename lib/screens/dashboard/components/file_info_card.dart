@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
-import '../../../components/b2b_modern_container.dart';
-import '../../../theme/tailwind_colors.dart';
 
 class FileInfoCard extends StatelessWidget {
   const FileInfoCard({
@@ -39,18 +37,18 @@ class FileInfoCard extends StatelessWidget {
     switch (title.toLowerCase()) {
       case 'documents':
       case '文档':
-        return TailwindColors.blue600;    // Tailwind蓝 - 文档数据
+        return TW.colorBlue[600]!;    // Tailwind蓝 - 文档数据
       case 'media':
       case '媒体文件':
-        return TailwindColors.violet500;     // Tailwind紫 - 创意内容
+        return TW.colorViolet[500]!;     // Tailwind紫 - 创意内容
       case 'others':
       case '其他':
-        return TailwindColors.green500;    // Tailwind绿 - 其他资源
+        return TW.colorGreen[500]!;    // Tailwind绿 - 其他资源
       case 'unknown':
       case '未知':
-        return TailwindColors.orange500;     // Tailwind橙 - 未知类型
+        return TW.colorOrange[500]!;     // Tailwind橙 - 未知类型
       default:
-        return TailwindColors.green500;    // 默认绿色 - 统计信息
+        return TW.colorGreen[500]!;    // 默认绿色 - 统计信息
     }
   }
   

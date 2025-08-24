@@ -1,12 +1,9 @@
 import 'package:admin/controllers/menu_app_controller.dart';
-import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
-import '../../../components/b2b_modern_container.dart';
-import '../../../theme/tailwind_colors.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -19,22 +16,22 @@ class Header extends StatelessWidget {
     
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.lg,
-        vertical: TechSpacing.md,
+        horizontal: TW.space('6'),
+        vertical: TW.space('4'),
       ),
       child: Row(
         children: [
           if (!Responsive.isDesktop(context))
             Container(
-              padding: EdgeInsets.all(TechSpacing.sm),
+              padding: EdgeInsets.all(TW.space('2')),
               decoration: BoxDecoration(
-                color: TailwindColors.blue600.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(TechRadius.sm),
+                color: TW.colorBlue[600]!.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(TW.radius('sm')),
               ),
               child: IconButton(
                 icon: Icon(
                   Icons.menu_rounded,
-                  color: TailwindColors.blue600,
+                  color: TW.colorBlue[600]!,
                 ),
                 onPressed: context.read<MenuAppController>().controlMenu,
               ),
@@ -43,20 +40,20 @@ class Header extends StatelessWidget {
           if (!Responsive.isMobile(context)) ...[
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: TechSpacing.lg,
-                vertical: TechSpacing.sm,
+                horizontal: TW.space('6'),
+                vertical: TW.space('2'),
               ),
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(TechSpacing.sm),
+                    padding: EdgeInsets.all(TW.space('2')),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [TailwindColors.blue600, TailwindColors.cyan500],
+                        colors: [TW.colorBlue[600]!, TW.colorCyan[500]!],
                       ),
-                      borderRadius: BorderRadius.circular(TechRadius.sm),
+                      borderRadius: BorderRadius.circular(TW.radius('sm')),
                     ),
                     child: Icon(
                       Icons.dashboard_outlined,
@@ -64,7 +61,7 @@ class Header extends StatelessWidget {
                       size: 20,
                     ),
                   ),
-                  SizedBox(width: TechSpacing.md),
+                  SizedBox(width: TW.space('4')),
                   Text(
                     "企业仪表板",
                     style: theme.textTheme.headlineSmall?.copyWith(
@@ -97,15 +94,27 @@ class ProfileCard extends StatelessWidget {
     final theme = Theme.of(context);
     
     return Container(
-      margin: EdgeInsets.only(left: TechSpacing.lg),
-      child: B2BModernContainer(
-        statusColor: TailwindColors.blue600,
-        showStatusBar: false,
+      margin: EdgeInsets.only(left: TW.space('6')),
+      child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: TechSpacing.lg,
-          vertical: TechSpacing.md,
+          horizontal: TW.space('6'),
+          vertical: TW.space('4'),
         ),
-        elevation: 1.0,
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(TW.radius('lg')),
+          border: Border.all(
+            color: theme.colorScheme.outline.withOpacity(0.1),
+            width: 1,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.shadow.withOpacity(0.1),
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -115,18 +124,18 @@ class ProfileCard extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [TailwindColors.blue600, TailwindColors.cyan500],
-                      ),
-                borderRadius: BorderRadius.circular(TechRadius.xl),
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [TW.colorBlue[600]!, TW.colorCyan[500]!],
+                ),
+                borderRadius: BorderRadius.circular(TW.radius('xl')),
                 border: Border.all(
-                  color: TailwindColors.blue600.withOpacity(0.2),
+                  color: TW.colorBlue[600]!.withOpacity(0.2),
                   width: 2,
                 ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(TechRadius.xl),
+                borderRadius: BorderRadius.circular(TW.radius('xl')),
                 child: Image.asset(
                   "assets/images/profile_pic.png",
                   fit: BoxFit.cover,
@@ -135,7 +144,7 @@ class ProfileCard extends StatelessWidget {
             ),
             
             if (!Responsive.isMobile(context)) ...[ 
-              SizedBox(width: TechSpacing.md),
+              SizedBox(width: TW.space('4')),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -157,18 +166,18 @@ class ProfileCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: TechSpacing.sm),
+              SizedBox(width: TW.space('2')),
             ],
             
             Container(
-              padding: EdgeInsets.all(TechSpacing.xs),
+              padding: EdgeInsets.all(TW.space('1')),
               decoration: BoxDecoration(
-                color: TailwindColors.blue600.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(TechRadius.xs),
+                color: TW.colorBlue[600]!.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(TW.radius('xs')),
               ),
               child: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: TailwindColors.blue600,
+                color: TW.colorBlue[600]!,
                 size: 18,
               ),
             ),
@@ -201,38 +210,38 @@ class SearchField extends StatelessWidget {
             fontSize: 14,
           ),
           fillColor: isDark 
-              ? TailwindColors.slate800.withOpacity(0.3)
-              : TailwindColors.slate100.withOpacity(0.5),
+              ? TW.colorSlate[800]!.withOpacity(0.3)
+              : TW.colorSlate[100]!.withOpacity(0.5),
           filled: true,
           contentPadding: EdgeInsets.symmetric(
-            horizontal: TechSpacing.lg,
-            vertical: TechSpacing.md,
+            horizontal: TW.space('6'),
+            vertical: TW.space('4'),
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color: TailwindColors.blue600.withOpacity(0.2),
+              color: TW.colorBlue[600]!.withOpacity(0.2),
               width: 1,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(TechRadius.md)),
+            borderRadius: BorderRadius.all(Radius.circular(TW.radius('md'))),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: theme.dividerColor.withOpacity(0.3),
               width: 1,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(TechRadius.md)),
+            borderRadius: BorderRadius.all(Radius.circular(TW.radius('md'))),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: TailwindColors.blue600,
+              color: TW.colorBlue[600]!,
               width: 2,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(TechRadius.md)),
+            borderRadius: BorderRadius.all(Radius.circular(TW.radius('md'))),
           ),
           prefixIcon: Container(
             margin: EdgeInsets.only(
-              left: TechSpacing.md,
-              right: TechSpacing.sm,
+              left: TW.space('4'),
+              right: TW.space('2'),
             ),
             child: Icon(
               Icons.search_rounded,
@@ -244,20 +253,20 @@ class SearchField extends StatelessWidget {
             onTap: () {
               debugPrint('Search button tapped');
             },
-            borderRadius: BorderRadius.circular(TechRadius.sm),
+            borderRadius: BorderRadius.circular(TW.radius('sm')),
             child: Container(
-              margin: EdgeInsets.all(TechSpacing.xs),
-              padding: EdgeInsets.all(TechSpacing.sm),
+              margin: EdgeInsets.all(TW.space('1')),
+              padding: EdgeInsets.all(TW.space('2')),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [TailwindColors.blue600, TailwindColors.cyan500],
-                      ),
-                borderRadius: BorderRadius.all(Radius.circular(TechRadius.sm)),
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [TW.colorBlue[600]!, TW.colorCyan[500]!],
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(TW.radius('sm'))),
                 boxShadow: [
                   BoxShadow(
-                    color: TailwindColors.blue600.withOpacity(0.25),
+                    color: TW.colorBlue[600]!.withOpacity(0.25),
                     blurRadius: 4,
                     offset: Offset(0, 2),
                   ),

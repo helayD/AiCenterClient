@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:admin/models/my_files.dart';
 import '../../../constants.dart';
-import '../../../theme/tech_theme_system.dart';
-import '../../../theme/tailwind_colors.dart';
-import '../../../components/tech_components.dart';
+import '../../../components/tailwind_components.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -25,21 +23,22 @@ class MyFiles extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            // 使用TechButton替代TextButton
-            TechButton.primary(
+            // 使用TailwindButton替代TextButton
+            TailwindButton(
+              variant: 'primary',
               onPressed: () {},
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.add, size: 18),
-                  SizedBox(width: TechSpacing.xs),
+                  SizedBox(width: TW.space('1')),
                   Text("添加新文件"),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: TechSpacing.lg),
+        SizedBox(height: TW.space('6')),
         _buildTechGrid(context),
       ],
     );
@@ -49,7 +48,7 @@ class MyFiles extends StatelessWidget {
   Widget _buildTechGrid(BuildContext context) {
     // 使用响应式布局计算列数
     final int cols = _getResponsiveCols(context);
-    final double gap = TechSpacing.md;
+    final double gap = TW.space('4');
     
     return Wrap(
       spacing: gap,
@@ -58,7 +57,7 @@ class MyFiles extends StatelessWidget {
         SizedBox(
           width: cols == 1 
             ? double.infinity 
-            : (MediaQuery.of(context).size.width - gap * (cols - 1) - TechSpacing.lg * 2) / cols,
+            : (MediaQuery.of(context).size.width - gap * (cols - 1) - TW.space('6') * 2) / cols,
           child: TechFileCard(
             title: fileInfo.title!,
             totalStorage: fileInfo.totalStorage!,
@@ -96,8 +95,8 @@ class TechFileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TechCard(
-      padding: EdgeInsets.all(TechSpacing.lg),
+    return TailwindCard(
+      padding: '6',
       showBorder: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +108,7 @@ class TechFileCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: TechSpacing.md),
+          SizedBox(height: TW.space('4')),
           
           // 文件数量信息
           Text(
@@ -118,7 +117,7 @@ class TechFileCard extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
             ),
           ),
-          SizedBox(height: TechSpacing.sm),
+          SizedBox(height: TW.space("2")),
           
           // 存储大小 - 突出显示
           Text(

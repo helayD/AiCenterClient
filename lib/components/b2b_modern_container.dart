@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import '../theme/tailwind_colors.dart';
 
 /// B2B现代化容器组件 - 替代传统Card设计
 /// 采用状态驱动、渐变背景、图标引导的企业级设计
@@ -109,7 +108,7 @@ class _B2BModernContainerState extends State<B2BModernContainer>
         return Transform.scale(
           scale: _scaleAnimation.value,
           child: Container(
-            margin: widget.margin ?? EdgeInsets.only(bottom: TechSpacing.md),
+            margin: widget.margin ?? EdgeInsets.only(bottom: TW.space('4')),
             height: widget.height,
             child: MouseRegion(
               onEnter: _handleHoverEnter,
@@ -118,13 +117,13 @@ class _B2BModernContainerState extends State<B2BModernContainer>
               child: Material(
                 elevation: _elevationAnimation.value,
                 borderRadius: BorderRadius.circular(
-                  widget.borderRadius ?? TechRadius.md,
+                  widget.borderRadius ?? TW.radius('md'),
                 ),
-                shadowColor: (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.15),
+                shadowColor: (widget.statusColor ?? Semantic.primary).withOpacity(0.15),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      widget.borderRadius ?? TechRadius.md,
+                      widget.borderRadius ?? TW.radius('md'),
                     ),
                     gradient: widget.gradientColors != null
                         ? LinearGradient(
@@ -138,8 +137,8 @@ class _B2BModernContainerState extends State<B2BModernContainer>
                         : null,
                     border: Border.all(
                       color: _isHovered
-                          ? (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.3)
-                          : (isDark ? TailwindColors.slate600 : TailwindColors.slate300).withOpacity(0.5),
+                          ? (widget.statusColor ?? Semantic.primary).withOpacity(0.3)
+                          : (isDark ? TW.colorSlate[600]! : TW.colorSlate[300]!).withOpacity(0.5),
                       width: 1,
                     ),
                   ),
@@ -149,13 +148,13 @@ class _B2BModernContainerState extends State<B2BModernContainer>
                       InkWell(
                         onTap: widget.onTap,
                         borderRadius: BorderRadius.circular(
-                          widget.borderRadius ?? TechRadius.md,
+                          widget.borderRadius ?? TW.radius('md'),
                         ),
-                        splashColor: (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.1),
-                        highlightColor: (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.05),
+                        splashColor: (widget.statusColor ?? Semantic.primary).withOpacity(0.1),
+                        highlightColor: (widget.statusColor ?? Semantic.primary).withOpacity(0.05),
                         child: IntrinsicWidth(
                           child: Container(
-                            padding: widget.padding ?? EdgeInsets.all(TechSpacing.lg),
+                            padding: widget.padding ?? EdgeInsets.all(TW.space('6')),
                             child: _buildContent(context),
                           ),
                         ),
@@ -170,10 +169,10 @@ class _B2BModernContainerState extends State<B2BModernContainer>
                           child: Container(
                             width: 4,
                             decoration: BoxDecoration(
-                              color: widget.statusColor ?? TailwindSemanticColors.primary,
+                              color: widget.statusColor ?? Semantic.primary,
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(widget.borderRadius ?? TechRadius.md),
-                                bottomLeft: Radius.circular(widget.borderRadius ?? TechRadius.md),
+                                topLeft: Radius.circular(widget.borderRadius ?? TW.radius('md')),
+                                bottomLeft: Radius.circular(widget.borderRadius ?? TW.radius('md')),
                               ),
                             ),
                           ),
@@ -211,19 +210,19 @@ class _B2BModernContainerState extends State<B2BModernContainer>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.1),
-                  (widget.statusColor ?? TailwindSemanticColors.primary).withOpacity(0.05),
+                  (widget.statusColor ?? Semantic.primary).withOpacity(0.1),
+                  (widget.statusColor ?? Semantic.primary).withOpacity(0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(TechRadius.sm),
+              borderRadius: BorderRadius.circular(TW.radius('sm')),
             ),
             child: Icon(
               widget.icon,
               size: 24,
-              color: widget.statusColor ?? TailwindSemanticColors.primary,
+              color: widget.statusColor ?? Semantic.primary,
             ),
           ),
-          SizedBox(width: TechSpacing.lg),
+          SizedBox(width: TW.space('6')),
         ],
         
         // 文本内容区域
@@ -242,7 +241,7 @@ class _B2BModernContainerState extends State<B2BModernContainer>
                   ),
                 ),
               if (widget.subtitle != null) ...[
-                SizedBox(height: TechSpacing.xs),
+                SizedBox(height: TW.space('1')),
                 Text(
                   widget.subtitle!,
                   style: theme.textTheme.bodyMedium?.copyWith(
@@ -259,7 +258,7 @@ class _B2BModernContainerState extends State<B2BModernContainer>
         
         // 尾部区域
         if (widget.trailing != null) ...[
-          SizedBox(width: TechSpacing.md),
+          SizedBox(width: TW.space('4')),
           widget.trailing!,
         ],
       ],
@@ -293,12 +292,12 @@ class B2BDataContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final effectiveColor = color ?? TailwindSemanticColors.primary;
+    final effectiveColor = color ?? Semantic.primary;
     
     return B2BModernContainer(
       onTap: onTap,
       statusColor: effectiveColor,
-      padding: EdgeInsets.all(TechSpacing.xl),
+      padding: EdgeInsets.all(TW.space('8')),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -307,10 +306,10 @@ class B2BDataContainer extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Container(
-                  padding: EdgeInsets.all(TechSpacing.sm),
+                  padding: EdgeInsets.all(TW.space('2')),
                   decoration: BoxDecoration(
                     color: effectiveColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(TechRadius.sm),
+                    borderRadius: BorderRadius.circular(TW.radius('sm')),
                   ),
                   child: Icon(
                     icon,
@@ -318,7 +317,7 @@ class B2BDataContainer extends StatelessWidget {
                     color: effectiveColor,
                   ),
                 ),
-                SizedBox(width: TechSpacing.md),
+                SizedBox(width: TW.space('4')),
               ],
               Expanded(
                 child: Text(
@@ -332,7 +331,7 @@ class B2BDataContainer extends StatelessWidget {
             ],
           ),
           
-          SizedBox(height: TechSpacing.lg),
+          SizedBox(height: TW.space('6')),
           
           // 数值显示
           Row(
@@ -351,14 +350,14 @@ class B2BDataContainer extends StatelessWidget {
                 ),
               ),
               if (trend != null && trendValue != null) ...[
-                SizedBox(width: TechSpacing.sm),
+                SizedBox(width: TW.space('2')),
                 _buildTrendIndicator(context),
               ],
             ],
           ),
           
           if (subtitle != null) ...[
-            SizedBox(height: TechSpacing.sm),
+            SizedBox(height: TW.space('2')),
             Text(
               subtitle!,
               style: theme.textTheme.bodySmall?.copyWith(
@@ -379,27 +378,27 @@ class B2BDataContainer extends StatelessWidget {
     
     switch (trend!) {
       case TrendDirection.up:
-        trendColor = TailwindColors.green500;
+        trendColor = TW.colorGreen[500]!;
         trendIcon = Icons.trending_up_rounded;
         break;
       case TrendDirection.down:
-        trendColor = TailwindColors.red500;
+        trendColor = TW.colorRed[500]!;
         trendIcon = Icons.trending_down_rounded;
         break;
       case TrendDirection.neutral:
-        trendColor = TailwindColors.slate500;
+        trendColor = TW.colorSlate[500]!;
         trendIcon = Icons.trending_flat_rounded;
         break;
     }
     
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.sm,
-        vertical: TechSpacing.xs,
+        horizontal: TW.space('2'),
+        vertical: TW.space('1'),
       ),
       decoration: BoxDecoration(
         color: trendColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(TechRadius.sm),
+        borderRadius: BorderRadius.circular(TW.radius('sm')),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -409,7 +408,7 @@ class B2BDataContainer extends StatelessWidget {
             size: 16,
             color: trendColor,
           ),
-          SizedBox(width: TechSpacing.xs),
+          SizedBox(width: TW.space('1')),
           Text(
             trendValue!,
             style: theme.textTheme.bodySmall?.copyWith(
@@ -458,12 +457,12 @@ class B2BListItem extends StatelessWidget {
       statusColor: statusColor,
       showStatusBar: showStatusBar,
       elevation: 1.0,
-      padding: EdgeInsets.all(TechSpacing.lg),
+      padding: EdgeInsets.all(TW.space('6')),
       child: Row(
         children: [
           if (leading != null) ...[
             leading!,
-            SizedBox(width: TechSpacing.md),
+            SizedBox(width: TW.space('4')),
           ],
           Expanded(
             child: Column(
@@ -477,7 +476,7 @@ class B2BListItem extends StatelessWidget {
                     ),
                   ),
                 if (subtitle != null) ...[
-                  SizedBox(height: TechSpacing.xs),
+                  SizedBox(height: TW.space('1')),
                   Text(
                     subtitle!,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -489,7 +488,7 @@ class B2BListItem extends StatelessWidget {
             ),
           ),
           if (trailing != null) ...[
-            SizedBox(width: TechSpacing.md),
+            SizedBox(width: TW.space('4')),
             trailing!,
           ],
         ],

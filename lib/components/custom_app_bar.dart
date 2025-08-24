@@ -3,11 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants.dart';
-import '../responsive.dart';
 import '../controllers/navigation_controller.dart';
 import '../controllers/auth_controller.dart';
 import '../utils/md3_accessibility.dart';
-import '../theme/tailwind_colors.dart';
 
 /// 自定义顶部AppBar组件
 /// 支持响应式设计和动态标题显示
@@ -79,14 +77,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 32,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.circular(TechRadius.sm),
+              borderRadius: BorderRadius.circular(TW.radius('sm')),
             ),
             child: Padding(
               padding: EdgeInsets.all(6),
               child: Image.asset("assets/images/logo.png"),
             ),
           ),
-          SizedBox(width: TechSpacing.sm),
+          SizedBox(width: TW.space('2')),
         ],
         
         // 当前页面标题
@@ -112,10 +110,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       button: true,
       child: Container(
-        margin: EdgeInsets.all(TechSpacing.sm),
+        margin: EdgeInsets.all(TW.space('2')),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(TechRadius.sm),
+          borderRadius: BorderRadius.circular(TW.radius('sm')),
         ),
         child: Padding(
           padding: EdgeInsets.all(6),
@@ -155,13 +153,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         message: "用户: $userName\n邮箱: ${authController.userEmail ?? '未知'}",
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: TechSpacing.sm,
-            vertical: TechSpacing.xs,
+            horizontal: TW.space('2'),
+            vertical: TW.space('1'),
           ),
-          margin: EdgeInsets.symmetric(vertical: TechSpacing.sm),
+          margin: EdgeInsets.symmetric(vertical: TW.space('2')),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surfaceContainer,
-            borderRadius: BorderRadius.circular(TechRadius.xl),
+            borderRadius: BorderRadius.circular(TW.radius('xl')),
             border: Border.all(
               color: Theme.of(context).colorScheme.outlineVariant,
               width: 1,
@@ -191,7 +189,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-              SizedBox(width: TechSpacing.xs + 2),
+              SizedBox(width: TW.space('1') + 2),
               
               // 用户名
               Text(

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants.dart';
-import '../../responsive.dart';
 
 /// 占位页面组件 - 用于尚未实现的功能页面
 class PlaceholderScreen extends StatelessWidget {

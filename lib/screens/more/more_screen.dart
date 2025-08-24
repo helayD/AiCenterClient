@@ -4,11 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants.dart';
-import '../../responsive.dart';
 import '../../controllers/auth_controller.dart';
 import '../../components/theme_selector.dart';
 import '../../components/b2b_modern_container.dart';
-import '../../theme/tailwind_colors.dart';
 
 /// 更多页面 - 容纳次要功能和系统设置
 class MoreScreen extends StatelessWidget {
@@ -58,7 +56,7 @@ class MoreScreen extends StatelessWidget {
         final l10n = AppLocalizations.of(context)!;
         
         return B2BModernContainer(
-          statusColor: TailwindColors.green500,  // Tailwind绿色 - 账户信息
+          statusColor: TW.colorGreen[500]!,  // Tailwind绿色 - 账户信息
           showStatusBar: true,
           showHoverEffect: true,
           padding: EdgeInsets.all(defaultPadding),
@@ -72,12 +70,12 @@ class MoreScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [TailwindColors.green500, TailwindColors.cyan500],
+                    colors: [TW.colorGreen[500]!, TW.colorCyan[500]!],
                   ),
-                  borderRadius: BorderRadius.circular(TechRadius.sm),
+                  borderRadius: BorderRadius.circular(TW.radius('sm')),
                   boxShadow: [
                     BoxShadow(
-                      color: TailwindColors.green500.withOpacity(0.3),
+                      color: TW.colorGreen[500]!.withOpacity(0.3),
                       spreadRadius: 1,
                       blurRadius: 4,
                       offset: Offset(0, 2),
@@ -85,11 +83,11 @@ class MoreScreen extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(TechSpacing.sm),
+                  padding: EdgeInsets.all(TW.space('2')),
                   child: Image.asset("assets/images/logo.png"),
                 ),
               ),
-              SizedBox(width: TechSpacing.md),
+              SizedBox(width: TW.space('4')),
               
               // 用户信息
               Expanded(
@@ -104,22 +102,22 @@ class MoreScreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
-                    SizedBox(height: TechSpacing.xs),
+                    SizedBox(height: TW.space('1')),
                     Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: TechSpacing.sm,
-                        vertical: TechSpacing.xs,
+                        horizontal: TW.space('2'),
+                        vertical: TW.space('1'),
                       ),
                       decoration: BoxDecoration(
-                        color: TailwindColors.green500.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(TechRadius.xs),
+                        color: TW.colorGreen[500]!.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(TW.radius('xs')),
                       ),
                       child: Text(
                         l10n.administrator,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: TailwindColors.green500,
+                          color: TW.colorGreen[500]!,
                         ),
                       ),
                     ),
@@ -142,8 +140,8 @@ class MoreScreen extends StatelessWidget {
       padding: EdgeInsets.zero,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: _getFunctionGridCrossAxisCount(screenSize.width),
-        crossAxisSpacing: TechSpacing.md,
-        mainAxisSpacing: TechSpacing.md,
+        crossAxisSpacing: TW.space('4'),
+        mainAxisSpacing: TW.space('4'),
         childAspectRatio: _getFunctionGridChildAspectRatio(screenSize.width),
       ),
       itemCount: functions.length,
@@ -179,14 +177,14 @@ class MoreScreen extends StatelessWidget {
       statusColor: tailwindColor,
       showStatusBar: true,
       showHoverEffect: true,
-      padding: EdgeInsets.all(TechSpacing.md),
+      padding: EdgeInsets.all(TW.space('4')),
       onTap: function.onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // 图标容器 - 使用渐变背景
           Container(
-            padding: EdgeInsets.all(TechSpacing.md),
+            padding: EdgeInsets.all(TW.space('4')),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -196,7 +194,7 @@ class MoreScreen extends StatelessWidget {
                   tailwindColor.withOpacity(0.7),
                 ],
               ),
-              borderRadius: BorderRadius.circular(TechRadius.sm),
+              borderRadius: BorderRadius.circular(TW.radius('sm')),
               boxShadow: [
                 BoxShadow(
                   color: tailwindColor.withOpacity(0.3),
@@ -221,7 +219,7 @@ class MoreScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
           ),
-          SizedBox(height: TechSpacing.md),
+          SizedBox(height: TW.space('4')),
           
           // 标题
           Text(
@@ -241,19 +239,19 @@ class MoreScreen extends StatelessWidget {
   /// 将传统颜色映射到Tailwind色彩
   Color _mapToTailwindColor(Color originalColor) {
     if (originalColor == Colors.blue) {
-      return TailwindColors.blue500;      // 蓝色功能 -> Tailwind蓝
+      return TW.colorBlue[500]!;      // 蓝色功能 -> Tailwind蓝
     } else if (originalColor == Colors.green) {
-      return TailwindColors.green500;     // 绿色功能 -> Tailwind绿
+      return TW.colorGreen[500]!;     // 绿色功能 -> Tailwind绿
     } else if (originalColor == Colors.orange) {
-      return TailwindColors.orange500;    // 橙色功能 -> Tailwind橙
+      return TW.colorOrange[500]!;    // 橙色功能 -> Tailwind橙
     } else if (originalColor == Colors.grey) {
-      return TailwindColors.slate500;     // 灰色功能 -> Tailwind灰
+      return TW.colorSlate[500]!;     // 灰色功能 -> Tailwind灰
     } else if (originalColor == primaryColor) {
-      return TailwindColors.cyan500;      // 主色功能 -> Tailwind青
+      return TW.colorCyan[500]!;      // 主色功能 -> Tailwind青
     } else if (originalColor == Colors.red || originalColor == Colors.redAccent) {
-      return TailwindColors.red500;       // 红色功能 -> Tailwind红
+      return TW.colorRed[500]!;       // 红色功能 -> Tailwind红
     } else {
-      return TailwindColors.blue600;      // 默认 -> Tailwind深蓝
+      return TW.colorBlue[600]!;      // 默认 -> Tailwind深蓝
     }
   }
 

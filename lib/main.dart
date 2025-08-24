@@ -7,6 +7,7 @@ import 'package:admin/controllers/theme_controller.dart';
 import 'package:admin/screens/auth/login_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
 import 'package:admin/components/md3_page_transitions.dart';
+import 'package:admin/theme/tailwind_theme_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -65,9 +66,9 @@ class AppWrapper extends StatelessWidget {
               ],
               supportedLocales: LocaleController.supportedLocales,
               
-              // Theme configuration
-              theme: themeController.lightTheme,
-              darkTheme: themeController.darkTheme,
+              // Theme configuration - 使用 Tailwind CSS v4 主题系统
+              theme: TailwindThemeSystem.lightTheme,
+              darkTheme: TailwindThemeSystem.darkTheme,
               themeMode: themeController.isDarkMode ? ThemeMode.dark : ThemeMode.light,
               
               home: AuthWrapper(),

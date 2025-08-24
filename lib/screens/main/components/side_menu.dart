@@ -6,8 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
-import '../../../components/b2b_modern_container.dart';
-import '../../../theme/tailwind_colors.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -25,14 +23,14 @@ class SideMenu extends StatelessWidget {
           // 现代化B2B头部区域
           Container(
             height: 180,
-            padding: EdgeInsets.all(TechSpacing.xl),
+            padding: EdgeInsets.all(TW.space('8')),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  TailwindSemanticColors.primary,
-                  TailwindSemanticColors.primary.withOpacity(0.8),
+                  Semantic.primary,
+                  Semantic.primary.withOpacity(0.8),
                 ],
               ),
             ),
@@ -52,7 +50,7 @@ class SideMenu extends StatelessWidget {
                         Colors.white.withOpacity( 0.1),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(TechRadius.lg),
+                    borderRadius: BorderRadius.circular(TW.radius('lg')),
                     border: Border.all(
                       color: Colors.white.withOpacity(0.3),
                       width: 2,
@@ -66,14 +64,14 @@ class SideMenu extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(TechSpacing.md),
+                    padding: EdgeInsets.all(TW.space('4')),
                     child: Image.asset(
                       "assets/images/logo.png",
                       color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(height: TechSpacing.md),
+                SizedBox(height: TW.space('4')),
                 
                 // 用户信息显示区域
                 Consumer<AuthController>(
@@ -91,15 +89,15 @@ class SideMenu extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: TechSpacing.xs),
+                        SizedBox(height: TW.space('1')),
                         Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: TechSpacing.md,
-                            vertical: TechSpacing.xs,
+                            horizontal: TW.space('4'),
+                            vertical: TW.space('1'),
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.15),
-                            borderRadius: BorderRadius.circular(TechRadius.sm),
+                            borderRadius: BorderRadius.circular(TW.radius('sm')),
                           ),
                           child: Text(
                             "企业管理员",
@@ -122,16 +120,16 @@ class SideMenu extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 _buildMenuItems(context),
-                SizedBox(height: defaultPadding),
+                SizedBox(height: TW.space('4')),
                 // Theme selector
                 ThemeSelector(),
-                SizedBox(height: defaultPadding),
+                SizedBox(height: TW.space('4')),
               ],
             ),
           ),
           // 现代化注销区域
           Container(
-            padding: EdgeInsets.all(TechSpacing.lg),
+            padding: EdgeInsets.all(TW.space('6')),
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
@@ -273,20 +271,20 @@ class DrawerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = isLogout ? TailwindColors.red500 : TailwindSemanticColors.primary;
+    final color = isLogout ? TW.colorRed[500]! : Semantic.primary;
     
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: TechSpacing.md,
-        vertical: TechSpacing.xs,
+        horizontal: TW.space('4'),
+        vertical: TW.space('1'),
       ),
       child: B2BModernContainer(
         onTap: press,
         statusColor: color,
         showStatusBar: false,
         padding: EdgeInsets.symmetric(
-          horizontal: TechSpacing.lg,
-          vertical: TechSpacing.md,
+          horizontal: TW.space('6'),
+          vertical: TW.space('4'),
         ),
         elevation: 1.0,
         child: Row(
@@ -304,7 +302,7 @@ class DrawerListTile extends StatelessWidget {
                     color.withOpacity( 0.05),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(TechRadius.sm),
+                borderRadius: BorderRadius.circular(TW.radius("sm")),
                 border: Border.all(
                   color: color.withOpacity( 0.2),
                   width: 1,
@@ -313,7 +311,7 @@ class DrawerListTile extends StatelessWidget {
               child: _buildMenuIcon(color),
             ),
             
-            SizedBox(width: TechSpacing.lg),
+            SizedBox(width: TW.space('6')),
             
             // 菜单标题
             Expanded(
@@ -322,7 +320,7 @@ class DrawerListTile extends StatelessWidget {
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: isLogout 
-                      ? TailwindColors.red500
+                      ? TW.colorRed[500]!
                       : theme.colorScheme.onSurface,
                   letterSpacing: -0.1,
                 ),
@@ -331,10 +329,10 @@ class DrawerListTile extends StatelessWidget {
             
             // 指示箭头
             Container(
-              padding: EdgeInsets.all(TechSpacing.xs),
+              padding: EdgeInsets.all(TW.space('1')),
               decoration: BoxDecoration(
                 color: color.withOpacity( 0.1),
-                borderRadius: BorderRadius.circular(TechRadius.xs),
+                borderRadius: BorderRadius.circular(TW.radius('xs')),
               ),
               child: Icon(
                 Icons.arrow_forward_ios_rounded,

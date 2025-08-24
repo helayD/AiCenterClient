@@ -1,199 +1,283 @@
 import 'package:flutter/material.dart';
-import 'theme/tailwind_colors.dart';
+import 'theme/tailwind_design_tokens.dart';
+
+/// 🎨 Tailwind CSS v4 纯净系统接口
+/// 完全符合官方标准，无兼容层，最先进的设计令牌系统
+/// 
+/// 核心原则:
+/// ✅ 直接使用 Tailwind 官方设计令牌
+/// ✅ 无兼容层，性能最优
+/// ✅ 强制最佳实践
+/// ✅ utility-first 设计理念
 
 // ============================================================================
-// 统一配色系统 - 仅使用Tailwind CSS标准
+// 🎯 主接口：直接暴露 Tailwind 设计令牌
 // ============================================================================
 
-/// 主要业务色 - 直接使用Tailwind Blue-600
-const primaryColor = TailwindColors.blue600;
-
-/// 成功状态色 - 直接使用Tailwind Green-500  
-const successColor = TailwindColors.green500;
-
-/// 警告状态色 - 直接使用Tailwind Orange-500
-const warningColor = TailwindColors.orange500;
-
-/// 错误状态色 - 直接使用Tailwind Red-500
-const errorColor = TailwindColors.red500;
-
-/// 信息状态色 - 直接使用Tailwind Cyan-500
-const infoColor = TailwindColors.cyan500;
-
-// ============================================================================
-// 统一间距系统 - 基于4px标准
-// ============================================================================
-
-/// 标准间距 - 16px (Tailwind的4单位)
-const defaultPadding = TechSpacing.md;
-
-/// 间距系统 - 基于4px基准
-class TechSpacing {
-  const TechSpacing();
+/// 💡 Tailwind 设计令牌系统访问器
+/// 示例: TW.space('4'), TW.colorBlue[600], TW.textSize('lg')
+class TW {
+  /// 获取间距值 - 模拟 p-4, m-6 等
+  static double space(String token) => TailwindDesignTokens.space(token);
   
-  static const double px = 1.0;    // 1px - 细线
-  static const double xs = 4.0;    // 1 unit - 微间距  
-  static const double sm = 8.0;    // 2 units - 小间距
-  static const double md = 16.0;   // 4 units - 标准间距
-  static const double lg = 24.0;   // 6 units - 大间距
-  static const double xl = 32.0;   // 8 units - 超大间距
-  static const double xxl = 48.0;  // 12 units - 巨大间距
-  static const double xxxl = 64.0; // 16 units - 最大间距
+  /// 获取圆角值 - 模拟 rounded-lg, rounded-xl 等
+  static double radius(String token) => TailwindDesignTokens.radius(token);
+  
+  /// 获取阴影值 - 模拟 shadow-sm, shadow-lg 等
+  static List<BoxShadow> shadow(String token) => TailwindDesignTokens.shadow(token);
+  
+  /// 获取文字大小 - 模拟 text-sm, text-lg 等
+  static double textSize(String token) => TailwindDesignTokens.textSize(token);
+  
+  /// 获取字重 - 模拟 font-medium, font-bold 等
+  static FontWeight fontWeight(String token) => TailwindDesignTokens.fontWeight(token);
+  
+  /// 获取断点值 - 模拟响应式断点
+  static double breakpoint(String token) => TailwindDesignTokens.breakpoint(token);
+  
+  // 色彩系统访问器
+  static Map<int, Color> get colorSlate => TailwindDesignTokens.colorSlate;
+  static Map<int, Color> get colorGray => TailwindDesignTokens.colorGray;
+  static Map<int, Color> get colorBlue => TailwindDesignTokens.colorBlue;
+  static Map<int, Color> get colorGreen => TailwindDesignTokens.colorGreen;
+  static Map<int, Color> get colorRed => TailwindDesignTokens.colorRed;
+  static Map<int, Color> get colorOrange => TailwindDesignTokens.colorOrange;
+  static Map<int, Color> get colorCyan => TailwindDesignTokens.colorCyan;
+}
+
+/// 🎨 语义令牌访问器
+/// 示例: Semantic.primary, Semantic.getColor(context, ...)
+class Semantic {
+  // 主色调
+  static Color get primary => TailwindSemanticTokens.primary;
+  static Color get primaryHover => TailwindSemanticTokens.primaryHover;
+  static Color get primaryLight => TailwindSemanticTokens.primaryLight;
+  
+  // 功能色系
+  static Color get success => TailwindSemanticTokens.success;
+  static Color get warning => TailwindSemanticTokens.warning;
+  static Color get error => TailwindSemanticTokens.error;
+  static Color get info => TailwindSemanticTokens.info;
+  
+  // 中性色系
+  static Color get surface => TailwindSemanticTokens.surface;
+  static Color get surfaceVariant => TailwindSemanticTokens.surfaceVariant;
+  static Color get border => TailwindSemanticTokens.border;
+  static Color get onSurface => TailwindSemanticTokens.onSurface;
+  static Color get onSurfaceVariant => TailwindSemanticTokens.onSurfaceVariant;
+  
+  // 暗色主题
+  static Color get darkPrimary => TailwindSemanticTokens.darkPrimary;
+  static Color get darkSuccess => TailwindSemanticTokens.darkSuccess;
+  static Color get darkWarning => TailwindSemanticTokens.darkWarning;
+  static Color get darkError => TailwindSemanticTokens.darkError;
+  static Color get darkSurface => TailwindSemanticTokens.darkSurface;
+  static Color get darkSurfaceVariant => TailwindSemanticTokens.darkSurfaceVariant;
+  static Color get darkBorder => TailwindSemanticTokens.darkBorder;
+  static Color get darkOnSurface => TailwindSemanticTokens.darkOnSurface;
+  static Color get darkOnSurfaceVariant => TailwindSemanticTokens.darkOnSurfaceVariant;
+  
+  // 工具方法
+  static Color getColor(BuildContext context, {
+    required Color lightColor,
+    required Color darkColor,
+  }) => TailwindSemanticTokens.getColor(context, 
+    lightColor: lightColor, darkColor: darkColor);
 }
 
 // ============================================================================
-// 圆角系统
+// 🌈 语义颜色快速访问器
 // ============================================================================
 
-class TechRadius {
-  const TechRadius();
-  
-  static const double none = 0.0;      // rounded-none
-  static const double xs = 2.0;        // rounded-xs
-  static const double sm = 4.0;        // rounded-sm
-  static const double md = 6.0;        // rounded-md
-  static const double lg = 8.0;        // rounded-lg
-  static const double xl = 12.0;       // rounded-xl
-  static const double xxl = 16.0;      // rounded-2xl
-  static const double xxxl = 24.0;     // rounded-3xl
-  static const double full = 9999.0;   // rounded-full
+/// 主要业务色 - blue-600
+Color get primaryColor => TW.colorBlue[600]!;
+
+/// 成功状态色 - green-500
+Color get successColor => TW.colorGreen[500]!;
+
+/// 警告状态色 - orange-500
+Color get warningColor => TW.colorOrange[500]!;
+
+/// 错误状态色 - red-500
+Color get errorColor => TW.colorRed[500]!;
+
+/// 信息状态色 - cyan-500
+Color get infoColor => TW.colorCyan[500]!;
+
+// ============================================================================
+// 📐 标准间距快速访问器
+// ============================================================================
+
+/// 标准内边距 - p-4 (16px)
+double get defaultPadding => TW.space('4');
+
+// ============================================================================
+// ⏱️ 动画与交互系统
+// ============================================================================
+
+/// 动画时长
+class TWDuration {
+  static const instant = Duration.zero;                    // 0ms
+  static const fast = Duration(milliseconds: 150);        // 150ms - 微交互
+  static const normal = Duration(milliseconds: 300);      // 300ms - 标准交互
+  static const slow = Duration(milliseconds: 500);        // 500ms - 复杂交互
+}
+
+/// 动画曲线
+class TWCurves {
+  static const easeOut = Cubic(0.0, 0.0, 0.2, 1.0);      // 快入慢出
+  static const easeIn = Cubic(0.4, 0.0, 1.0, 1.0);       // 慢入快出
+  static const easeInOut = Cubic(0.4, 0.0, 0.2, 1.0);    // 平滑过渡
 }
 
 // ============================================================================
-// 阴影系统
+// 📱 响应式工具函数
 // ============================================================================
 
-class TechShadow {
-  const TechShadow();
+/// 响应式工具类 - 基于 Tailwind 断点
+class Responsive {
+  /// 检查屏幕尺寸
+  static bool isMobile(BuildContext context) => 
+      MediaQuery.of(context).size.width < TW.breakpoint('md');
+      
+  static bool isTablet(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    return width >= TW.breakpoint('md') && width < TW.breakpoint('lg');
+  }
   
-  static const List<BoxShadow> none = []; // shadow-none
+  static bool isDesktop(BuildContext context) => 
+      MediaQuery.of(context).size.width >= TW.breakpoint('lg');
+
+  /// 响应式列数 - sm:1 md:2 lg:3 xl:4
+  static int cols(BuildContext context, {
+    int sm = 1,    // mobile
+    int md = 2,    // tablet  
+    int lg = 3,    // desktop
+    int xl = 4,    // wide
+  }) {
+    final width = MediaQuery.of(context).size.width;
+    
+    if (width >= TW.breakpoint('xl')) return xl;
+    if (width >= TW.breakpoint('lg')) return lg;
+    if (width >= TW.breakpoint('md')) return md;
+    return sm;
+  }
   
-  static const List<BoxShadow> xs = [    // shadow-xs
-    BoxShadow(
-      color: Color(0x0A000000),
-      offset: Offset(0, 1),
-      blurRadius: 2,
-      spreadRadius: 0,
-    ),
-  ];
-  
-  static const List<BoxShadow> sm = [    // shadow-sm
-    BoxShadow(
-      color: Color(0x1A000000),
-      offset: Offset(0, 1),
-      blurRadius: 3,
-      spreadRadius: 0,
-    ),
-    BoxShadow(
-      color: Color(0x1A000000),
-      offset: Offset(0, 1),
-      blurRadius: 2,
-      spreadRadius: -1,
-    ),
-  ];
-  
-  static const List<BoxShadow> md = [    // shadow-md
-    BoxShadow(
-      color: Color(0x1A000000),
-      offset: Offset(0, 4),
-      blurRadius: 6,
-      spreadRadius: -1,
-    ),
-    BoxShadow(
-      color: Color(0x1A000000),
-      offset: Offset(0, 2),
-      blurRadius: 4,
-      spreadRadius: -2,
-    ),
-  ];
+  /// 响应式间距 - 等同于 gap-4 md:gap-6 lg:gap-8
+  static double gap(BuildContext context, {
+    String sm = '4',    // 16px
+    String md = '6',    // 24px
+    String lg = '8',    // 32px
+  }) {
+    final width = MediaQuery.of(context).size.width;
+    
+    if (width >= TW.breakpoint('lg')) return TW.space(lg);
+    if (width >= TW.breakpoint('md')) return TW.space(md);
+    return TW.space(sm);
+  }
 }
 
 // ============================================================================
-// 动画系统
+// 🔤 常用文字样式快速构建器
 // ============================================================================
 
-class TechDuration {
-  const TechDuration();
+/// 文字样式快速构建器 - 基于 Tailwind 文字系统
+class TextStyles {
+  /// 大标题 - text-4xl font-bold
+  static TextStyle h1(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('4xl'),
+    fontWeight: TW.fontWeight('bold'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[100]
+        : TW.colorGray[900]),
+  );
   
-  static const Duration instant = Duration.zero;           // 瞬间
-  static const Duration fast = Duration(milliseconds: 150); // 快速
-  static const Duration normal = Duration(milliseconds: 300); // 标准
-  static const Duration slow = Duration(milliseconds: 500);  // 缓慢
+  /// 中标题 - text-2xl font-semibold
+  static TextStyle h2(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('2xl'),
+    fontWeight: TW.fontWeight('semibold'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[100]
+        : TW.colorGray[900]),
+  );
+  
+  /// 小标题 - text-xl font-medium
+  static TextStyle h3(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('xl'),
+    fontWeight: TW.fontWeight('medium'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[200]
+        : TW.colorGray[800]),
+  );
+  
+  /// 正文 - text-base
+  static TextStyle body(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('base'),
+    fontWeight: TW.fontWeight('normal'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[300]
+        : TW.colorGray[700]),
+  );
+  
+  /// 小字 - text-sm
+  static TextStyle small(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('sm'),
+    fontWeight: TW.fontWeight('normal'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[400]
+        : TW.colorGray[600]),
+  );
+  
+  /// 标注 - text-xs
+  static TextStyle caption(BuildContext context, {Color? color}) => TextStyle(
+    fontSize: TW.textSize('xs'),
+    fontWeight: TW.fontWeight('normal'),
+    color: color ?? (Theme.of(context).brightness == Brightness.dark 
+        ? TW.colorGray[500]
+        : TW.colorGray[500]),
+  );
 }
 
-class TechCurves {
-  const TechCurves();
+// ============================================================================
+// 🎨 主题感知颜色工具
+// ============================================================================
+
+/// 主题感知颜色工具 - 自动处理明暗模式
+class ThemeColors {
+  /// 获取主题感知的文字颜色
+  static Color text(BuildContext context, {int shade = 700}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? TW.colorGray[1000 - shade]!  // 暗模式反转
+        : TW.colorGray[shade]!;
+  }
   
-  static const Cubic easeOut = Cubic(0.0, 0.0, 0.2, 1.0);      // ease-out
-  static const Cubic easeIn = Cubic(0.4, 0.0, 1.0, 1.0);       // ease-in
-  static const Cubic easeInOut = Cubic(0.4, 0.0, 0.2, 1.0);    // ease-in-out
+  /// 获取主题感知的表面颜色
+  static Color surface(BuildContext context, {int shade = 50}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? TW.colorGray[950 - shade]!   // 暗模式使用深色
+        : TW.colorGray[shade]!;
+  }
+  
+  /// 获取主题感知的边框颜色
+  static Color border(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark 
+        ? TW.colorGray[800]!
+        : TW.colorGray[200]!;
+  }
 }
 
 // ============================================================================
-// 响应式断点
+// 💡 使用示例和最佳实践
 // ============================================================================
 
-class TechBreakpoints {
-  const TechBreakpoints();
-  
-  static const double mobile = 640.0;   // sm - 移动端
-  static const double tablet = 768.0;   // md - 平板
-  static const double laptop = 1024.0;  // lg - 笔记本
-  static const double desktop = 1280.0; // xl - 桌面
-  static const double wide = 1536.0;    // 2xl - 宽屏
-}
-
-// ============================================================================
-// 排版系统
-// ============================================================================
-
-class TechTypography {
-  const TechTypography();
-  
-  // 字体大小 (基于Tailwind比例系统)
-  static const double displayLarge = 56.0;    // text-6xl - 主展示标题
-  static const double displayMedium = 48.0;   // text-5xl - 次展示标题
-  static const double displaySmall = 36.0;    // text-4xl - 小展示标题
-  
-  static const double headlineLarge = 32.0;   // text-3xl - 大标题
-  static const double headlineMedium = 24.0;  // text-2xl - 中标题
-  static const double headlineSmall = 20.0;   // text-xl - 小标题
-  
-  static const double titleLarge = 18.0;      // text-lg - 大标题
-  static const double titleMedium = 16.0;     // text-base - 中标题
-  static const double titleSmall = 14.0;      // text-sm - 小标题
-  
-  static const double bodyLarge = 16.0;       // text-base - 大正文
-  static const double bodyMedium = 14.0;      // text-sm - 中正文
-  static const double bodySmall = 12.0;       // text-xs - 小正文
-  
-  static const double labelLarge = 14.0;      // text-sm - 大标签
-  static const double labelMedium = 12.0;     // text-xs - 中标签
-  static const double labelSmall = 10.0;      // text-2xs - 小标签
-
-  // 字重
-  static const FontWeight thin = FontWeight.w100;        // font-thin
-  static const FontWeight extraLight = FontWeight.w200;  // font-extralight
-  static const FontWeight light = FontWeight.w300;       // font-light
-  static const FontWeight normal = FontWeight.w400;      // font-normal
-  static const FontWeight medium = FontWeight.w500;      // font-medium
-  static const FontWeight semiBold = FontWeight.w600;    // font-semibold
-  static const FontWeight bold = FontWeight.w700;        // font-bold
-  static const FontWeight extraBold = FontWeight.w800;   // font-extrabold
-  static const FontWeight black = FontWeight.w900;       // font-black
-
-  // 行高
-  static const double lineHeightTight = 1.25;   // leading-tight
-  static const double lineHeightSnug = 1.375;   // leading-snug  
-  static const double lineHeightNormal = 1.5;   // leading-normal
-  static const double lineHeightRelaxed = 1.625; // leading-relaxed
-  static const double lineHeightLoose = 2.0;    // leading-loose
-
-  // 字间距
-  static const double letterSpacingTighter = -0.05; // tracking-tighter
-  static const double letterSpacingTight = -0.025;  // tracking-tight
-  static const double letterSpacingNormal = 0.0;    // tracking-normal
-  static const double letterSpacingWide = 0.025;    // tracking-wide
-  static const double letterSpacingWider = 0.05;    // tracking-wider
-  static const double letterSpacingWidest = 0.1;    // tracking-widest
-}
+/// 📖 最佳实践示例:
+/// 
+/// 🎯 间距: TW.space('4')  // 16px
+/// 🎨 颜色: TW.colorBlue[600]  // #2563EB
+/// 📝 文字: TW.textSize('lg')  // 18px
+/// 📱 响应: Responsive.isMobile(context)
+/// 🔤 样式: TextStyles.h1(context)
+/// 🌗 主题: ThemeColors.text(context)

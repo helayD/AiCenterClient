@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../utils/md3_animations.dart';
-import '../theme/tailwind_colors.dart';
 
 /// Material Design 3 增强按钮基类
 /// 提供统一的动画和交互行为
@@ -197,11 +196,11 @@ class MD3ElevatedButton extends MD3ButtonBase {
     return ElevatedButton.styleFrom(
       elevation: 1.0,
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.lg,
-        vertical: TechSpacing.md,
+        horizontal: TW.space('6'),
+        vertical: TW.space('4'),
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(TechRadius.full),
+        borderRadius: BorderRadius.circular(TW.radius('full')),
       ),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w500,
@@ -273,11 +272,11 @@ class MD3FilledButton extends MD3ButtonBase {
     return FilledButton.styleFrom(
       elevation: 0.0,
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.lg,
-        vertical: TechSpacing.md,
+        horizontal: TW.space('6'),
+        vertical: TW.space('4'),
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(TechRadius.full),
+        borderRadius: BorderRadius.circular(TW.radius('full')),
       ),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w500,
@@ -349,11 +348,11 @@ class MD3OutlinedButton extends MD3ButtonBase {
     return OutlinedButton.styleFrom(
       elevation: 0.0,
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.lg,
-        vertical: TechSpacing.md,
+        horizontal: TW.space('6'),
+        vertical: TW.space('4'),
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(TechRadius.full),
+        borderRadius: BorderRadius.circular(TW.radius('full')),
       ),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w500,
@@ -442,11 +441,11 @@ class MD3TextButton extends MD3ButtonBase {
     return TextButton.styleFrom(
       elevation: 0.0,
       padding: EdgeInsets.symmetric(
-        horizontal: TechSpacing.lg,
-        vertical: TechSpacing.md,
+        horizontal: TW.space('6'),
+        vertical: TW.space('4'),
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(TechRadius.full),
+        borderRadius: BorderRadius.circular(TW.radius('full')),
       ),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w500,

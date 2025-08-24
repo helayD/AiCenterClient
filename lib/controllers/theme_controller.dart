@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/font_config.dart';
 import '../constants.dart';
+import '../theme/tailwind_theme_system.dart';
 
 enum AppThemeMode {
   light,
@@ -87,257 +88,30 @@ class ThemeController extends ChangeNotifier {
     }
   }
   
-  // Get light theme data
+  // Get light theme data - 使用 Tailwind CSS v4 设计系统
   ThemeData get lightTheme {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: primaryColor,
-      brightness: Brightness.light,
-    ).copyWith(
-      // MD3 增强配色 - 更柔和的表面色
-      surface: const Color(0xFFF4FBFA),
-      onSurface: const Color(0xFF161D1D),
-      surfaceContainer: const Color(0xFFECF3F2),
-      surfaceContainerHigh: const Color(0xFFE5EDEC),
-      surfaceContainerHighest: const Color(0xFFDFE7E6),
-      surfaceContainerLow: const Color(0xFFF2F9F8),
-      surfaceContainerLowest: const Color(0xFFFFFFFF),
-    );
+    final tailwindTheme = TailwindThemeSystem.lightTheme;
     
-    return ThemeData(
-      colorScheme: colorScheme,
-      scaffoldBackgroundColor: colorScheme.surface,
-      cardColor: colorScheme.surfaceContainer,
-      canvasColor: colorScheme.surface,
-      
-      // AppBar theme
-      appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-        elevation: 0,
-        scrolledUnderElevation: 2,
-        surfaceTintColor: colorScheme.surfaceTint,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        iconTheme: IconThemeData(color: colorScheme.onSurface),
-      ),
-      
-      // Text theme - 平台感知字体配置
+    // 保持平台感知字体配置的兼容性
+    return tailwindTheme.copyWith(
       textTheme: _getPlatformTextTheme().apply(
-        bodyColor: colorScheme.onSurface,
-        displayColor: colorScheme.onSurface,
-      ),
-      
-      // Icon theme
-      iconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
-      
-      // Drawer theme
-      drawerTheme: DrawerThemeData(
-        backgroundColor: colorScheme.surface,
-        surfaceTintColor: colorScheme.surfaceTint,
-      ),
-      
-      // Card theme - Material 3样式
-      cardTheme: CardTheme(
-        color: colorScheme.surfaceContainer,
-        surfaceTintColor: colorScheme.surfaceTint,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: colorScheme.outlineVariant,
-            width: 1,
-          ),
-        ),
-      ),
-      
-      // Input decoration theme
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: colorScheme.surfaceContainerHighest,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.outline),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.outline),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.primary, width: 2),
-        ),
-        labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-        hintStyle: TextStyle(color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6)),
-      ),
-      
-      // Elevated button theme
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.primary,
-          foregroundColor: colorScheme.onPrimary,
-          elevation: 1,
-          shadowColor: colorScheme.shadow,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-      ),
-      
-      // List tile theme
-      listTileTheme: ListTileThemeData(
-        textColor: colorScheme.onSurface,
-        iconColor: colorScheme.onSurfaceVariant,
+        bodyColor: tailwindTheme.colorScheme.onSurface,
+        displayColor: tailwindTheme.colorScheme.onSurface,
       ),
     );
   }
   
-  // Get dark theme data
+  // Get dark theme data - 使用 Tailwind CSS v4 设计系统
   ThemeData get darkTheme {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: primaryColor,
-      brightness: Brightness.dark,
-    ).copyWith(
-      // MD3 暗色主题增强配色 - 更深邃的表面色
-      surface: const Color(0xFF0F1514),
-      onSurface: const Color(0xFFE0E3E2),
-      surfaceContainer: const Color(0xFF1A2120),
-      surfaceContainerHigh: const Color(0xFF252B2A),
-      surfaceContainerHighest: const Color(0xFF303635),
-      surfaceContainerLow: const Color(0xFF161D1C),
-      surfaceContainerLowest: const Color(0xFF0A0F0E),
-    );
+    final tailwindTheme = TailwindThemeSystem.darkTheme;
     
-    return ThemeData(
-      colorScheme: colorScheme,
-      scaffoldBackgroundColor: colorScheme.surface,
-      cardColor: colorScheme.surfaceContainer,
-      canvasColor: colorScheme.surface,
-      
-      // AppBar theme
-      appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-        elevation: 0,
-        scrolledUnderElevation: 2,
-        surfaceTintColor: colorScheme.surfaceTint,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        iconTheme: IconThemeData(color: colorScheme.onSurface),
-      ),
-      
-      // Text theme - 平台感知字体配置
+    // 保持平台感知字体配置的兼容性
+    return tailwindTheme.copyWith(
       textTheme: _getPlatformTextTheme().apply(
-        bodyColor: colorScheme.onSurface,
-        displayColor: colorScheme.onSurface,
-      ),
-      
-      // Icon theme
-      iconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
-      
-      // Drawer theme
-      drawerTheme: DrawerThemeData(
-        backgroundColor: colorScheme.surface,
-        surfaceTintColor: colorScheme.surfaceTint,
-      ),
-      
-      // Card theme - Material 3样式
-      cardTheme: CardTheme(
-        color: colorScheme.surfaceContainer,
-        surfaceTintColor: colorScheme.surfaceTint,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: colorScheme.outlineVariant,
-            width: 1,
-          ),
-        ),
-      ),
-      
-      // Input decoration theme
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: colorScheme.surfaceContainerHighest,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.outline),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.outline),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.primary, width: 2),
-        ),
-        labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-        hintStyle: TextStyle(color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6)),
-      ),
-      
-      // Elevated button theme
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.primary,
-          foregroundColor: colorScheme.onPrimary,
-          elevation: 1,
-          shadowColor: colorScheme.shadow,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-      ),
-      
-      // List tile theme
-      listTileTheme: ListTileThemeData(
-        textColor: colorScheme.onSurface,
-        iconColor: colorScheme.onSurfaceVariant,
+        bodyColor: tailwindTheme.colorScheme.onSurface,
+        displayColor: tailwindTheme.colorScheme.onSurface,
       ),
     );
-  }
-  
-  // Material 3 动态配色生成器
-  ColorScheme _generateColorScheme({
-    required Color seedColor,
-    required Brightness brightness,
-  }) {
-    final baseScheme = ColorScheme.fromSeed(
-      seedColor: seedColor,
-      brightness: brightness,
-    );
-    
-    // 根据明暗模式应用MD3增强配色
-    if (brightness == Brightness.light) {
-      return baseScheme.copyWith(
-        surface: const Color(0xFFF4FBFA),
-        onSurface: const Color(0xFF161D1D),
-        surfaceContainer: const Color(0xFFECF3F2),
-        surfaceContainerHigh: const Color(0xFFE5EDEC),
-        surfaceContainerHighest: const Color(0xFFDFE7E6),
-        surfaceContainerLow: const Color(0xFFF2F9F8),
-        surfaceContainerLowest: const Color(0xFFFFFFFF),
-      );
-    } else {
-      return baseScheme.copyWith(
-        surface: const Color(0xFF0F1514),
-        onSurface: const Color(0xFFE0E3E2),
-        surfaceContainer: const Color(0xFF1A2120),
-        surfaceContainerHigh: const Color(0xFF252B2A),
-        surfaceContainerHighest: const Color(0xFF303635),
-        surfaceContainerLow: const Color(0xFF161D1C),
-        surfaceContainerLowest: const Color(0xFF0A0F0E),
-      );
-    }
-  }
-  
-  // MD3 颜色验证器 - 检查对比度和可访问性
-  bool _isColorContrastCompliant(Color foreground, Color background) {
-    final fgLuminance = foreground.computeLuminance();
-    final bgLuminance = background.computeLuminance();
-    final contrast = (fgLuminance > bgLuminance
-        ? fgLuminance + 0.05
-        : bgLuminance + 0.05) / 
-        (fgLuminance > bgLuminance 
-        ? bgLuminance + 0.05 
-        : fgLuminance + 0.05);
-    return contrast >= 4.5; // WCAG AA 标准
   }
 
   // 平台感知字体主题

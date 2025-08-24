@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import '../constants.dart';
-import '../theme/tailwind_colors.dart';
 
 /// Material Design 3 可访问性工具类
 /// 提供全面的无障碍访问支持
@@ -211,7 +210,7 @@ class _MD3AccessibleButtonState extends State<MD3AccessibleButton>
                   color: Theme.of(context).colorScheme.primary,
                   width: 2.0,
                 ),
-                borderRadius: BorderRadius.circular(TechRadius.sm),
+                borderRadius: BorderRadius.circular(TW.radius("sm")),
               ) : null,
               child: widget.child,
             ),
@@ -365,7 +364,7 @@ class _MD3AccessibleListTileState extends State<MD3AccessibleListTile>
               color: Theme.of(context).colorScheme.primary,
               width: 2.0,
             ),
-            borderRadius: BorderRadius.circular(TechRadius.sm),
+            borderRadius: BorderRadius.circular(TW.radius("sm")),
           ) : null,
           child: ListTile(
             leading: widget.leading,

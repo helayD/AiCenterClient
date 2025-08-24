@@ -1,4 +1,3 @@
-import 'package:admin/responsive.dart';
 import 'package:admin/screens/dashboard/components/my_files.dart';
 import 'package:flutter/material.dart';
 
@@ -28,14 +27,16 @@ class DashboardScreen extends StatelessWidget {
 
   /// 构建响应式流动布局
   Widget _buildResponsiveLayout(BuildContext context) {
-    return Responsive(
+    if (Responsive.isMobile(context)) {
       // 移动端：垂直堆叠布局
-      mobile: _buildMobileLayout(context),
+      return _buildMobileLayout(context);
+    } else if (Responsive.isTablet(context)) {
       // 平板端：平衡布局
-      tablet: _buildTabletLayout(context),
+      return _buildTabletLayout(context);
+    } else {
       // 桌面端：左右分栏布局
-      desktop: _buildDesktopLayout(context),
-    );
+      return _buildDesktopLayout(context);
+    }
   }
 
   /// 移动端布局 - 垂直堆叠，优化触摸交互

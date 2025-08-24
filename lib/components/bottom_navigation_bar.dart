@@ -6,8 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants.dart';
 import '../controllers/navigation_controller.dart';
-import '../responsive.dart';
-import '../theme/tailwind_colors.dart';
 
 /// 自定义底部导航栏组件
 /// 基于Google Nav Bar实现现代化设计
@@ -25,9 +23,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           // 响应式边距调整 - MD3样式
           padding: EdgeInsets.symmetric(
             horizontal: Responsive.isMobile(context) 
-                ? TechSpacing.sm 
-                : TechSpacing.md,
-            vertical: TechSpacing.sm,
+                ? TW.space('2') 
+                : TW.space('4'),
+            vertical: TW.space('2'),
           ),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
@@ -50,7 +48,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               rippleColor: Theme.of(context).colorScheme.primary.withOpacity( 0.12),
               hoverColor: Theme.of(context).colorScheme.primary.withOpacity( 0.08),
               haptic: true,
-              tabBorderRadius: TechRadius.md,
+              tabBorderRadius: TW.radius('md'),
               tabActiveBorder: Border.all(
                 color: Theme.of(context).colorScheme.primary.withOpacity( 0.2),
                 width: 1,
@@ -68,15 +66,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               
               // 外观配置 - MD3 设计规范
-              gap: Responsive.isMobile(context) ? TechSpacing.xs : TechSpacing.sm,
+              gap: Responsive.isMobile(context) ? TW.space('1') : TW.space('2'),
               color: Theme.of(context).colorScheme.onSurfaceVariant,
               activeColor: Theme.of(context).colorScheme.primary,
               iconSize: Responsive.isMobile(context) ? 20 : 24,
               textSize: Responsive.isMobile(context) ? 12 : 14,
               tabBackgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity( 0.12),
               padding: EdgeInsets.symmetric(
-                horizontal: Responsive.isMobile(context) ? TechSpacing.sm : TechSpacing.md,
-                vertical: TechSpacing.sm,
+                horizontal: Responsive.isMobile(context) ? TW.space('2') : TW.space('4'),
+                vertical: TW.space('2'),
               ),
               
               // 导航项配置

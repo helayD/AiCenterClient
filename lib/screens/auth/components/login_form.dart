@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import '../../../utils/md3_accessibility.dart';
 import '../../../components/md3_enhanced_buttons.dart';
-import '../../../theme/tailwind_colors.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -123,19 +122,19 @@ class _LoginFormState extends State<LoginForm>
         filled: true,
         fillColor: theme.colorScheme.surfaceContainer,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.outline),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.error, width: 2),
         ),
         labelStyle: TextStyle(
@@ -197,19 +196,19 @@ class _LoginFormState extends State<LoginForm>
         filled: true,
         fillColor: theme.colorScheme.surfaceContainer,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.outline),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TechRadius.md),
+          borderRadius: BorderRadius.circular(TW.radius('md')),
           borderSide: BorderSide(color: theme.colorScheme.error, width: 2),
         ),
         labelStyle: TextStyle(
@@ -295,12 +294,12 @@ class _LoginFormState extends State<LoginForm>
           ),
           elevation: 1.0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(TechRadius.full),
+            borderRadius: BorderRadius.circular(TW.radius('full')),
           ),
           shadowColor: theme.colorScheme.primary.withValues(alpha: 0.3),
           padding: EdgeInsets.symmetric(
-            horizontal: TechSpacing.lg,
-            vertical: TechSpacing.md,
+            horizontal: TW.space('6'),
+            vertical: TW.space('4'),
           ),
         ),
         child: Semantics(
