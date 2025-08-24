@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import '../../../theme/tailwind_colors.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
@@ -53,19 +54,19 @@ List<PieChartSectionData> paiChartSelectionData = [
     radius: 25,
   ),
   PieChartSectionData(
-    color: Color(0xFF26E5FF),
+    color: TailwindColors.cyan400,
     value: 20,
     showTitle: false,
     radius: 22,
   ),
   PieChartSectionData(
-    color: Color(0xFFFFCF26),
+    color: TailwindColors.orange400,
     value: 10,
     showTitle: false,
     radius: 19,
   ),
   PieChartSectionData(
-    color: Color(0xFFEE2727),
+    color: TailwindColors.red500,
     value: 15,
     showTitle: false,
     radius: 16,

@@ -1,0 +1,239 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2024-01-01T00:00:00.000Z",
+  
+  "appTitle": "Flutter Admin Panel",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  
+  "adminLogin": "Admin Login",
+  "@adminLogin": {
+    "description": "Login page title"
+  },
+  
+  "loginDescription": "Please enter your credentials to access the admin panel",
+  "@loginDescription": {
+    "description": "Login page description"
+  },
+  
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Welcome message on desktop login"
+  },
+  
+  "manageDataAndAnalytics": "Manage Your Data and Analytics",
+  "@manageDataAndAnalytics": {
+    "description": "Subtitle on desktop login"
+  },
+  
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Email input field label"
+  },
+  
+  "emailHint": "Enter your email",
+  "@emailHint": {
+    "description": "Email input field hint"
+  },
+  
+  "password": "Password",
+  "@password": {
+    "description": "Password input field label"
+  },
+  
+  "passwordHint": "Enter your password",
+  "@passwordHint": {
+    "description": "Password input field hint"
+  },
+  
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password link text"
+  },
+  
+  "forgotPasswordDevelopment": "Forgot password feature is under development...",
+  "@forgotPasswordDevelopment": {
+    "description": "Forgot password development message"
+  },
+  
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  
+  "loggingIn": "Logging in...",
+  "@loggingIn": {
+    "description": "Login button text when loading"
+  },
+  
+  "loginSuccess": "Login successful!",
+  "@loginSuccess": {
+    "description": "Login success message"
+  },
+  
+  "demoAccount": "Demo Account",
+  "@demoAccount": {
+    "description": "Demo account section title"
+  },
+  
+  "demoEmail": "Email: admin@example.com",
+  "@demoEmail": {
+    "description": "Demo account email"
+  },
+  
+  "demoPassword": "Password: password123",
+  "@demoPassword": {
+    "description": "Demo account password"
+  },
+  
+  "invalidCredentials": "Invalid email or password, please try again",
+  "@invalidCredentials": {
+    "description": "Invalid credentials error message"
+  },
+  
+  "loginFailedNetwork": "Login failed, please check your network connection",
+  "@loginFailedNetwork": {
+    "description": "Network error message"
+  },
+  
+  "emailRequired": "Please enter your email address",
+  "@emailRequired": {
+    "description": "Email required validation message"
+  },
+  
+  "emailInvalid": "Please enter a valid email address",
+  "@emailInvalid": {
+    "description": "Email invalid validation message"
+  },
+  
+  "passwordRequired": "Please enter your password",
+  "@passwordRequired": {
+    "description": "Password required validation message"
+  },
+  
+  "passwordTooShort": "Password must be at least 6 characters",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
+  },
+  
+  "administrator": "Administrator",
+  "@administrator": {
+    "description": "Default administrator display name"
+  },
+  
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button text"
+  },
+  
+  "confirmLogout": "Confirm Logout",
+  "@confirmLogout": {
+    "description": "Logout confirmation dialog title"
+  },
+  
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation dialog message"
+  },
+  
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  
+  "logoutSuccess": "Successfully logged out",
+  "@logoutSuccess": {
+    "description": "Logout success message"
+  },
+  
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard menu item"
+  },
+  
+  "transaction": "Transaction",
+  "@transaction": {
+    "description": "Transaction menu item"
+  },
+  
+  "task": "Task",
+  "@task": {
+    "description": "Task menu item"
+  },
+  
+  "documents": "Documents",
+  "@documents": {
+    "description": "Documents menu item"
+  },
+  
+  "store": "Store",
+  "@store": {
+    "description": "Store menu item"
+  },
+  
+  "notification": "Notification",
+  "@notification": {
+    "description": "Notification menu item"
+  },
+  
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile menu item"
+  },
+  
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings menu item"
+  },
+
+  "more": "More",
+  "@more": {
+    "description": "More menu item for additional functions"
+  },
+  
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  
+  "languageChinese": "中文简体",
+  "@languageChinese": {
+    "description": "Chinese language name"
+  },
+  
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name"
+  },
+  
+  "themeMode": "Theme Mode",
+  "@themeMode": {
+    "description": "Theme mode setting label"
+  },
+  
+  "lightMode": "Light Mode",
+  "@lightMode": {
+    "description": "Light theme mode"
+  },
+  
+  "darkMode": "Dark Mode", 
+  "@darkMode": {
+    "description": "Dark theme mode"
+  },
+  
+  "autoMode": "Auto Mode",
+  "@autoMode": {
+    "description": "Auto theme mode that follows system"
+  },
+  
+  "switchToLightMode": "Switch to Light Mode",
+  "@switchToLightMode": {
+    "description": "Tooltip for switching to light mode"
+  },
+  
+  "switchToDarkMode": "Switch to Dark Mode",
+  "@switchToDarkMode": {
+    "description": "Tooltip for switching to dark mode"
+  }
+}

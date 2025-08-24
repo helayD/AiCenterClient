@@ -1,0 +1,28 @@
+{
+  "name": "aicenterclient",
+  "version": "1.0.0",
+  "description": "Flutter Admin Panel with CORS proxy for API integration",
+  "main": "proxy.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node proxy.js",
+    "dev": "NODE_ENV=development node proxy.js",
+    "prod": "NODE_ENV=production node proxy.js",
+    "proxy": "npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["flutter", "cors", "proxy", "admin", "dashboard"],
+  "author": "Flutter Admin Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,25 +1,75 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter-Responsive-Admin-Panel-or-Dashboard",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "Flutter-Responsive-Admin-Panel-or-Dashboard (profile mode)",
+            "name": "🌐 Flutter Web (热重载启用)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "chrome",
+            "args": [
+                "--web-port", "16001",
+                "--web-hostname", "0.0.0.0"
+            ],
+            "env": {
+                "USE_PROXY": "true"
+            }
+        },
+        {
+            "name": "🌐 Flutter Web (Web服务器模式)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "web-server",
+            "args": [
+                "--web-port", "16001",
+                "--web-hostname", "0.0.0.0"
+            ]
+        },
+        {
+            "name": "🚫 Flutter Web (热重载禁用)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "chrome",
+            "args": [
+                "--web-port", "16001",
+                "--no-web-experimental-hot-reload"
+            ]
+        },
+        {
+            "name": "📱 Flutter Debug (所有平台)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "🏃 Flutter Profile Mode",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
             "flutterMode": "profile"
         },
         {
-            "name": "Flutter-Responsive-Admin-Panel-or-Dashboard (release mode)",
+            "name": "🚀 Flutter Release Mode",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "🔧 Flutter Web + CORS代理",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "chrome",
+            "args": [
+                "--web-port", "16001"
+            ],
+            "env": {
+                "USE_PROXY": "true"
+            },
+            "preLaunchTask": "启动CORS代理服务器"
         }
     ]
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
+import '../../../components/b2b_modern_container.dart';
+import '../../../theme/tailwind_colors.dart';
 
 class FileInfoCard extends StatelessWidget {
   const FileInfoCard({
@@ -14,103 +16,75 @@ class FileInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.all(defaultPadding * 0.75),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: info.color!.withOpacity(0.1),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                ),
-                child: SvgPicture.asset(
-                  info.svgSrc!,
-                  colorFilter: ColorFilter.mode(
-                      info.color ?? Colors.black, BlendMode.srcIn),
-                ),
-              ),
-              Icon(Icons.more_vert, color: Colors.white54)
-            ],
-          ),
-          Text(
-            info.title!,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          ProgressLine(
-            color: info.color,
-            percentage: info.percentage,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${info.numOfFiles} Files",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white70),
-              ),
-              Text(
-                info.totalStorage!,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white),
-              ),
-            ],
-          )
-        ],
-      ),
+    final theme = Theme.of(context);
+    // 使用Tailwind配色系统
+    final color = _getTailwindColor(info.title!);
+    
+    return B2BDataContainer(
+      title: info.title!,
+      value: info.totalStorage!,
+      subtitle: "${info.numOfFiles} 个文件",
+      icon: _getStorageIcon(info.title!),
+      color: color,
+      trend: _getTrendDirection(info.percentage ?? 0),
+      trendValue: "${info.percentage ?? 0}%",
+      onTap: () {
+        debugPrint('Tapped on ${info.title}');
+      },
     );
+  }
+  
+  /// 根据存储类型获取Tailwind配色
+  Color _getTailwindColor(String title) {
+    switch (title.toLowerCase()) {
+      case 'documents':
+      case '文档':
+        return TailwindColors.blue600;    // Tailwind蓝 - 文档数据
+      case 'media':
+      case '媒体文件':
+        return TailwindColors.violet500;     // Tailwind紫 - 创意内容
+      case 'others':
+      case '其他':
+        return TailwindColors.green500;    // Tailwind绿 - 其他资源
+      case 'unknown':
+      case '未知':
+        return TailwindColors.orange500;     // Tailwind橙 - 未知类型
+      default:
+        return TailwindColors.green500;    // 默认绿色 - 统计信息
+    }
+  }
+  
+  /// 根据存储类型获取对应图标
+  IconData _getStorageIcon(String title) {
+    switch (title.toLowerCase()) {
+      case 'documents':
+      case '文档':
+        return Icons.description_outlined;
+      case 'media':
+      case '媒体文件':
+        return Icons.perm_media_outlined;
+      case 'others':
+      case '其他':
+        return Icons.folder_outlined;
+      case 'unknown':
+      case '未知':
+        return Icons.help_outline;
+      default:
+        return Icons.storage_outlined;
+    }
+  }
+  
+  /// 根据百分比获取趋势方向
+  TrendDirection _getTrendDirection(int percentage) {
+    if (percentage >= 80) {
+      return TrendDirection.up;    // 使用量高
+    } else if (percentage >= 50) {
+      return TrendDirection.neutral; // 使用量中等
+    } else {
+      return TrendDirection.down;   // 使用量低
+    }
   }
 }
 
-class ProgressLine extends StatelessWidget {
-  const ProgressLine({
-    Key? key,
-    this.color = primaryColor,
-    required this.percentage,
-  }) : super(key: key);
-
-  final Color? color;
-  final int? percentage;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 5,
-          decoration: BoxDecoration(
-            color: color!.withOpacity(0.1),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        LayoutBuilder(
-          builder: (context, constraints) => Container(
-            width: constraints.maxWidth * (percentage! / 100),
-            height: 5,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+// 现代化B2B设计已取代传统MD3设计
+// 新设计位于 ../../../components/b2b_modern_container.dart 中

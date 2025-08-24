@@ -1,9 +1,9 @@
-
-import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:admin/models/my_files.dart';
 import '../../../constants.dart';
-import 'file_info_card.dart';
+import '../../../theme/tech_theme_system.dart';
+import '../../../theme/tailwind_colors.dart';
+import '../../../components/tech_components.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -12,69 +12,124 @@ class MyFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // 使用新设计系统的间距
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "My Files",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
+              "我的文件",
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w600,
               ),
+            ),
+            // 使用TechButton替代TextButton
+            TechButton.primary(
               onPressed: () {},
-              icon: Icon(Icons.add),
-              label: Text("Add New"),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.add, size: 18),
+                  SizedBox(width: TechSpacing.xs),
+                  Text("添加新文件"),
+                ],
+              ),
             ),
           ],
         ),
-        SizedBox(height: defaultPadding),
-        Responsive(
-          mobile: FileInfoCardGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
-          ),
-          tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-          ),
-        ),
+        SizedBox(height: TechSpacing.lg),
+        _buildTechGrid(context),
       ],
     );
   }
+
+  /// 使用新设计系统的响应式网格
+  Widget _buildTechGrid(BuildContext context) {
+    // 使用响应式布局计算列数
+    final int cols = _getResponsiveCols(context);
+    final double gap = TechSpacing.md;
+    
+    return Wrap(
+      spacing: gap,
+      runSpacing: gap,
+      children: demoMyFiles.map((fileInfo) => 
+        SizedBox(
+          width: cols == 1 
+            ? double.infinity 
+            : (MediaQuery.of(context).size.width - gap * (cols - 1) - TechSpacing.lg * 2) / cols,
+          child: TechFileCard(
+            title: fileInfo.title!,
+            totalStorage: fileInfo.totalStorage!,
+            numOfFiles: fileInfo.numOfFiles!,
+            svgSrc: fileInfo.svgSrc!,
+          ),
+        ),
+      ).toList(),
+    );
+  }
+  
+  /// 响应式列数计算
+  int _getResponsiveCols(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    if (width >= 1024) return 4;  // 桌面端
+    if (width >= 768) return 3;   // 平板端
+    return 1;                     // 移动端
+  }
 }
 
-class FileInfoCardGridView extends StatelessWidget {
-  const FileInfoCardGridView({
+/// 使用新设计系统的文件卡片
+class TechFileCard extends StatelessWidget {
+  final String title;
+  final String totalStorage;
+  final int numOfFiles;
+  final String svgSrc;
+  
+  const TechFileCard({
     Key? key,
-    this.crossAxisCount = 4,
-    this.childAspectRatio = 1,
+    required this.title,
+    required this.totalStorage,
+    required this.numOfFiles,
+    required this.svgSrc,
   }) : super(key: key);
-
-  final int crossAxisCount;
-  final double childAspectRatio;
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: demoMyFiles.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
+    return TechCard(
+      padding: EdgeInsets.all(TechSpacing.lg),
+      showBorder: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 文件类型标题
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          SizedBox(height: TechSpacing.md),
+          
+          // 文件数量信息
+          Text(
+            '$numOfFiles 个文件',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            ),
+          ),
+          SizedBox(height: TechSpacing.sm),
+          
+          // 存储大小 - 突出显示
+          Text(
+            totalStorage,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ],
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
     );
   }
 }

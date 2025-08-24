@@ -1,5 +1,36 @@
 {
     "cSpell.words": [
         "Jolie"
-    ]
+    ],
+    "cmake.sourceDirectory": "/Users/helay/Documents/GitHub/AiCenterClient/windows",
+    
+    // Flutter开发优化配置
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2000,
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    
+    // 代码格式化
+    "editor.formatOnSave": true,
+    "dart.lineLength": 100,
+    
+    // 调试和性能
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "dart.evaluateGettersInDebugViews": true,
+    
+    // 终端配置
+    "terminal.integrated.defaultProfile.osx": "bash",
+    
+    // Flutter Web特定设置
+    "dart.flutterCreatePlatforms": ["android", "ios", "web", "macos"],
+    "dart.openDevTools": "flutter",
+    
+    // 文件监听
+    "files.watcherExclude": {
+        "**/build/**": true,
+        "**/.dart_tool/**": true,
+        "**/node_modules/**": true
+    }
 }

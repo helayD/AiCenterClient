@@ -1,0 +1,67 @@
+{
+    "Flutter StatelessWidget": {
+        "prefix": "stless",
+        "body": [
+            "class $1 extends StatelessWidget {",
+            "  const $1({Key? key}) : super(key: key);",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    return $2;",
+            "  }",
+            "}"
+        ],
+        "description": "创建StatelessWidget"
+    },
+    "Flutter StatefulWidget": {
+        "prefix": "stful",
+        "body": [
+            "class $1 extends StatefulWidget {",
+            "  const $1({Key? key}) : super(key: key);",
+            "",
+            "  @override",
+            "  State<$1> createState() => _$1State();",
+            "}",
+            "",
+            "class _$1State extends State<$1> {",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    return $2;",
+            "  }",
+            "}"
+        ],
+        "description": "创建StatefulWidget"
+    },
+    "Flutter Responsive Builder": {
+        "prefix": "responsive",
+        "body": [
+            "Responsive(",
+            "  mobile: $1,",
+            "  tablet: $2,",
+            "  desktop: $3,",
+            ")"
+        ],
+        "description": "创建响应式布局"
+    },
+    "Provider Consumer": {
+        "prefix": "consumer",
+        "body": [
+            "Consumer<$1>(",
+            "  builder: (context, $2, child) {",
+            "    return $3;",
+            "  },",
+            ")"
+        ],
+        "description": "创建Provider Consumer"
+    },
+    "Flutter Container": {
+        "prefix": "container",
+        "body": [
+            "Container(",
+            "  padding: const EdgeInsets.all($1),",
+            "  child: $2,",
+            ")"
+        ],
+        "description": "创建Container widget"
+    }
+}
