@@ -32,6 +32,13 @@
 /build/
 
 # Web related
+lib/generated_plugin_registrant.dart
+
+# Node.js related
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Symbolication related
 app.*.symbols
